@@ -76,16 +76,23 @@ const cardColors = [
     "border-t-4 border-red-400",
 ];
 const cardTextColors = [
-  "text-blue-500",
-  "text-green-700",
-  "text-purple-500",
-  "text-red-400",
+    "text-blue-500",
+    "text-green-700",
+    "text-purple-500",
+    "text-red-400",
 ];
 const cardBgColors = [
-  "bg-blue-500",
-  "bg-green-700",
-  "bg-purple-500",
-  "bg-red-400",
+    "bg-blue-500",
+    "bg-green-700",
+    "bg-purple-500",
+    "bg-red-400",
+];
+
+const cardApproackColors = [
+    "bg-blue-100",
+    "bg-green-100",
+    "bg-purple-100",
+    "bg-red-100",
 ];
 
 
@@ -110,7 +117,7 @@ const Dropdown = ({ title, content, color }) => {
 };
 export default function Programs() {
     return (
-        <section  className="py-16 px-2 mx-auto">
+        <section className="py-16 px-2 mx-auto">
             {/* Small Heading */}
             <p className="text-md md:text-xl text-blue-600 font-semibold  uppercase tracking-wide text-center">
                 Our Programs
@@ -158,6 +165,13 @@ export default function Programs() {
                             {card.modules.map((mod, idx) => (
                                 <Dropdown key={idx} title={mod.head} content={mod.content} color={cardTextColors[index]} />
                             ))}
+                        </div>
+
+                        <div className= {`${cardApproackColors[index]} mt-6 p-4 rounded-lg`}>
+                            <h4 className="text-lg text-left font-bold text-gray-700 dark:text-gray-900 mb-2 mt-4">
+                                Our Approach:
+                            </h4>
+                            <p className="text-gray-600 dark:text-gray-900 text-md text-left mt-2">{card.approach}</p>
                         </div>
                     </motion.div>
                 ))}

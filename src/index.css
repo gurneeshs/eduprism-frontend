@@ -95,5 +95,6 @@ body::before{
 
 .dark body::before {
   background-image: url('/background/darkBackground2.jpg');
-  opacity: 1;
+  opacity: 0.95
+  ;
 }

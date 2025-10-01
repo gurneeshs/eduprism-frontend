@@ -41,11 +41,19 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
-              <a href="/" className="flex items-center space-x-2">
+              <a href="/" className="flex items-center space-x-2 dark:hidden">
                 <img
                   src="/logo/logo.gif"   // 👈 place your logo file inside public/logo.png
                   alt="MyLogo"
-                  className="h-14 w-auto object-contain bg-gray-50"
+                  className="h-14 w-auto object-contain"
+                />
+                {/* Optional text next to logo */}
+              </a>
+              <a href="/" className="items-center space-x-2 hidden dark:flex">
+                <img
+                  src="/logo/logoDark.png"   // 👈 place your logo file inside public/logo.png
+                  alt="MyLogo"
+                  className="h-14 w-auto object-contain"
                 />
                 {/* Optional text next to logo */}
               </a>
