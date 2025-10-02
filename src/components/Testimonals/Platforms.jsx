@@ -16,7 +16,7 @@ const firstRowCards = [
         title: "Pencil Spaces",
         desc: "Interactive digital workspace for collaborative learning, note-taking, and creative problem-solving in an engaging environment.",
         tags: ["Digital Whiteboard", "Collaboration Tools"],
-        tagColors: ["bg-yellow-100 text-yellow-700", "bg-red-100 text-red-700"],
+        tagColors: ["bg-yellow-100 text-yellow-700", "bg-orange-100 text-orange-500"],
     },
     {
         color: "border-purple-500",
@@ -24,14 +24,14 @@ const firstRowCards = [
         title: "Pear Assessment",
         desc: "Comprehensive assessment tools that provide detailed insights into student performance and learning gaps with advanced analytics.",
         tags: ["Performance Analytics", "Progress Tracking"],
-        tagColors: ["bg-purple-100 text-purple-700", "bg-pink-100 text-pink-700"],
+        tagColors: ["bg-teal-100 text-teal-700", "bg-redorange-100 text-redorange-700"],
     },
 ];
 
 const secondRowCards = [
     {
-        color: "border-red-500",
-        icon: <Globe className="w-8 h-8 text-red-500" />,
+        color: "border-orange-300",
+        icon: <Globe className="w-8 h-8 text-orange-500" />,
         title: "Integrated Access",
         desc: "Log in to all platforms through a single portal for a streamlined experience.",
     },
@@ -42,14 +42,14 @@ const secondRowCards = [
         desc: "Keep track of your learning milestones and achievements across platforms.",
     },
     {
-        color: "border-green-500",
-        icon: <Shield className="w-8 h-8 text-green-500" />,
+        color: "border-lightgreen-500",
+        icon: <Shield className="w-8 h-8 text-lightgreen-500" />,
         title: "User-Friendly Interface",
         desc: "Navigate through your educational resources with an intuitive and accessible design.",
     },
     {
-        color: "border-purple-500",
-        icon: <Users className="w-8 h-8 text-purple-500" />,
+        color: "border-teal-300",
+        icon: <Users className="w-8 h-8 text-teal-300" />,
         title: "24/7 Support",
         desc: "Access help and support whenever you need it by contacting learn@eduprism.com.au.",
     },
@@ -59,7 +59,7 @@ export default function Platforms() {
     return (
         <section className="py-20 px-4 md:px-8 lg:px-16">
             {/* Headings */}
-            <p className="text-md md:text-xl uppercase tracking-wider text-blue-600 font-semibold text-center">
+            <p className="text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold text-center">
                 Our Platforms
             </p>
             <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2 text-center">

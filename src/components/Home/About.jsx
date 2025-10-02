@@ -8,7 +8,7 @@ export default function About() {
 
         <section className="py-16">
 
-            <div className="mx-auto px-4 pt-10 ">
+            <div className="mx-auto px-8 pt-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     {/* Left Side Content */}
                     <motion.div
@@ -19,7 +19,7 @@ export default function About() {
                         className="space-y-6 lg:text-left"
                     >
                         <h2 className="text-6xl  text-gray-800 dark:text-gray-100 w-100">
-                            100% Online AI - Powered <span className="text-blue-600">EduPRISM</span> Learning
+                            100% Online AI - Powered <span className="text-blue-500">EduPRISM</span> Learning
                         </h2>
                         <p className="text-gray-600 dark:text-gray-300 text-2xl leading-relaxed">
                             Experience state-of-the-art AI-powered tools that create personalized
@@ -27,10 +27,10 @@ export default function About() {
                         </p>
 
                         <div className="space-x-4">
-                            <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-xl shadow hover:bg-blue-700 transition">
+                            <button className="px-6 py-3 bg-blue-500 text-white font-medium rounded-xl shadow hover:bg-blue-700 transition">
                                 Book a Free Consultation
                             </button>
-                            <button className="px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-xl shadow hover:bg-gray-300 transition">
+                            <button className="px-6 py-3 bg-lightgreen-500 text-gray-50 font-medium rounded-xl shadow hover:bg-lightgreen-700 transition">
                                 Discover Over Process
                             </button>
                         </div>
@@ -67,20 +67,20 @@ export default function About() {
                             />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-                            <div className="dark:bg-blue-100 bg-blue-200 rounded-xl p-6 text-center shadow hover:scale-105 transition">
-                                <h3 className="text-3xl font-bold text-blue-600">
+                            <div className="dark:bg-blue-100 bg-blue-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
+                                <h3 className="text-3xl font-bold text-blue-500">
                                     <CountUp end={95} duration={2} suffix="%" enableScrollSpy />
                                 </h3>
                                 <p className="mt-2 text-gray-700">Grade Improvement</p>
                             </div>
-                            <div className="bg-green-200 dark:bg-green-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
-                                <h3 className="text-3xl font-bold text-green-600">
+                            <div className="bg-green-100 dark:bg-green-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
+                                <h3 className="text-3xl font-bold text-green-500">
                                     <CountUp end={99} duration={2} suffix="%" enableScrollSpy />
                                 </h3>
                                 <p className="mt-2 text-gray-700">Satisfaction Rate</p>
                             </div>
-                            <div className="bg-yellow-200 dark:bg-yellow-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
-                                <h3 className="text-3xl font-bold text-yellow-600">
+                            <div className="bg-yellow-100 dark:bg-yellow-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
+                                <h3 className="text-3xl font-bold text-yellow-700">
                                     <CountUp end={1200} duration={2} suffix=" hrs" enableScrollSpy />
                                 </h3>
                                 <p className="mt-2 text-gray-700">Tutoring Hours</p>
@@ -98,26 +98,26 @@ export default function About() {
                 className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 px-4"
             >
                 {/* Block 1 */}
-                <div className="flex items-center gap-3 bg-blue-200 p-7 rounded-xl shadow hover:bg-blue-300 hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
-                    <BookOpen className="text-blue-600 w-8 h-8" />
+                <div className="flex items-center gap-3 bg-blue-100 p-7 rounded-xl shadow  hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
+                    <BookOpen className="text-blue-500 w-8 h-8" />
                     <span className="text-gray-800 font-semibold">Learning</span>
                 </div>
 
                 {/* Block 2 */}
-                <div className="flex items-center gap-3 bg-green-200 p-7 rounded-xl shadow hover:bg-green-300 hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
-                    <Users className="text-green-600 w-8 h-8" />
+                <div className="flex items-center gap-3 bg-green-100 p-7 rounded-xl shadow hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
+                    <Users className="text-green-500 w-8 h-8" />
                     <span className="text-gray-800 font-semibold">Community</span>
                 </div>
 
                 {/* Block 3 */}
-                <div className="flex items-center gap-3 bg-yellow-200 p-7 rounded-xl shadow hover:bg-yellow-300 hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
-                    <Award className="text-yellow-600 w-8 h-8" />
+                <div className="flex items-center gap-3 bg-yellow-100 p-7 rounded-xl shadow hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
+                    <Award className="text-yellow-700 w-8 h-8" />
                     <span className="text-gray-800 font-semibold">Excellence</span>
                 </div>
 
                 {/* Block 4 */}
-                <div className="flex items-center gap-3 bg-purple-200 p-7 rounded-xl shadow hover:bg-purple-300 hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
-                    <Clock className="text-purple-600 w-8 h-8" />
+                <div className="flex items-center gap-3 bg-orange-100 p-7 rounded-xl shadow hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
+                    <Clock className="text-orange-500 w-8 h-8" />
                     <span className="text-gray-800 font-semibold">Time</span>
                 </div>
             </motion.div>

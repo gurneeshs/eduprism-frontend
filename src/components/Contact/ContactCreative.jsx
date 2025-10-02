@@ -47,7 +47,7 @@ export default function ContactCreative() {
     return (
         <section id="contact" className="py-20 px-4 md:px-8 lg:px-12 ">
             <div className="max-w-7xl mx-auto">
-                <p className="text-sm uppercase tracking-wider text-blue-600 font-semibold text-center">
+                <p className=" text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold text-center">
                     Get in Touch
                 </p>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-200 text-center mt-2">
@@ -111,7 +111,7 @@ export default function ContactCreative() {
                                             <div key={i} className="flex items-center gap-4">
                                                 <div
                                                     className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-md transition 
-                          ${isActive ? "bg-blue-600 dark:bg-blue-400 scale-105" : completed ? "bg-green-500" : "bg-gray-400 text-gray-700 dark:bg-gray-600 daark:text-gray-200"}`}
+                          ${isActive ? "bg-blue-500 dark:bg-blue-400 scale-105" : completed ? "bg-lightgreen-500" : "bg-gray-400 text-gray-700 dark:bg-gray-600 daark:text-gray-200"}`}
                                                 >
                                                     {i + 1}
                                                 </div>
@@ -437,7 +437,7 @@ export default function ContactCreative() {
                                             whileHover={{ scale: 1.06, boxShadow: "0 12px 30px rgba(59,130,246,0.24)" }}
                                             whileTap={{ scale: 0.98 }}
                                             transition={{ type: "spring", stiffness: 300 }}
-                                            className="ml-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-blue-600 text-white font-semibold"
+                                            className="ml-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-blue-500 text-white font-semibold"
                                         >
                                             Join Us Today
                                         </motion.button>

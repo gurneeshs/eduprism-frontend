@@ -5,17 +5,17 @@ const stats = [
   {
     label: "Years",
     value: 15,
-    color: "bg-gray-100 text-blue-600 border-blue-500",
+    color: "bg-blue-100 text-blue-700 border-blue-500",
   },
   {
     label: "Students",
     value: 500,
-    color: "bg-gray-100 text-green-600 border-green-500",
+    color: "bg-lightgreen-100 text-lightgreen-700 border-lightgreen-700",
   },
   {
     label: "Teaching Hours",
     value: 10000,
-    color: "bg-gray-100 text-purple-600 border-purple-500",
+    color: "bg-yellow-100 text-yellow-700 border-yellow-700",
   },
 ];
 
@@ -27,7 +27,7 @@ export default function Impact() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-md md:text-xl font-semibold tracking-widest text-blue-600 uppercase"
+        className="text-md md:text-xl font-semibold tracking-widest text-blue-700 uppercase"
       >
         Our Impact
       </motion.h4>

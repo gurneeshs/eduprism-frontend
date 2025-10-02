@@ -33,7 +33,7 @@ export default function Testimonials() {
   return (
     <section id="testimonial" className="py-20 px-4 md:px-4 lg:px-8">
       {/* Headings */}
-      <p className="text-md md:text-xl uppercase tracking-wider text-blue-600 font-semibold text-center">
+      <p className="text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold text-center">
         STUDENT ACHIEVEMENTS
       </p>
       <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2 text-center">
@@ -68,7 +68,7 @@ export default function Testimonials() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="mt-6 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:cursor-pointer"
+                    className="mt-6 px-8 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:cursor-pointer"
                 >
                     Start Your Success Story
                 </motion.button>

@@ -5,21 +5,16 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const colors = [
-    "text-red-600",
-    "text-blue-600",
-    "text-green-600",
-    "text-purple-600",
-    "text-pink-500",
-    "text-yellow-600"
+    "text-orange-500",
+    "text-blue-500",
+    "text-lightgreen-700",
 ]
 
 const colorsBg = [
-    "from-red-400 to-red-600",
-    "from-blue-400 to-blue-600",
-    "from-green-400 to-green-600",
-    "from-purple-400 to-purple-600",
-    "from-pink-400 to-pink-600",
-    "from-yellow-400 to-yellow-600"
+    "from-orange-300 to-orange-500",
+    "from-blue-300 to-blue-500",
+    "from-lightgreen-300 to-lightgreen-500",
+
 ]
 
 const tutors = [
@@ -52,7 +47,7 @@ export default function Team() {
     return (
         <section className="py-16 relative">
             <div className="text-center max-w-3xl mx-auto mb-12">
-                <p className="text-md md:text-xl text-blue-600 font-semibold uppercase">Meet our team</p>
+                <p className="text-md md:text-xl text-blue-700 font-semibold uppercase">Meet our team</p>
                 <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2">
                     Our Expert Educators
                 </h2>
@@ -89,7 +84,7 @@ export default function Team() {
                         >
                             <div className="flex items-start gap-4 w-full">
                                 {/* Logo */}
-                                <div className={`w-25 h-25 flex-shrink-0 rounded-full bg-gradient-to-r ${colorsBg[i]} flex items-center justify-center text-white font-bold text-2xl`}>
+                                <div className={`w-25 h-25 flex-shrink-0 rounded-full bg-gradient-to-r ${colorsBg[i%3]} flex items-center justify-center text-white font-bold text-2xl`}>
                                     {tutor.name.split(" ").map((n) => n[0]).join("")}
                                 </div>
 
@@ -108,7 +103,7 @@ export default function Team() {
 
                                     {/* Position */}
                                     <motion.p
-                                        className={`${colors[i]} text-xl font-bold mt-1`}
+                                        className={`${colors[i%3]} text-xl font-bold mt-1`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: false, amount: 0.5 }}

@@ -85,7 +85,7 @@ export default function Process() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:cursor-pointer focus:outline-none"
+                    className="px-8 py-4 bg-blue-500 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:cursor-pointer focus:outline-none"
                 >
                     Join Us Today
                 </motion.button>

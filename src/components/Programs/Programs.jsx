@@ -70,29 +70,29 @@ const cardsData = [
 
 
 const cardColors = [
-    "border-t-4 border-blue-500",
-    "border-t-4 border-green-700",
-    "border-t-4 border-purple-500",
-    "border-t-4 border-red-400",
+    "border-t-4 border-blue-700",
+    "border-t-4 border-lightgreen-700",
+    "border-t-4 border-orange-300",
+    "border-t-4 border-teal-500",
 ];
 const cardTextColors = [
-    "text-blue-500",
-    "text-green-700",
-    "text-purple-500",
-    "text-red-400",
+    "text-blue-700",
+    "text-lightgreen-700",
+    "text-orange-500",
+    "text-teal-500",
 ];
 const cardBgColors = [
-    "bg-blue-500",
-    "bg-green-700",
-    "bg-purple-500",
-    "bg-red-400",
+    "bg-blue-700",
+    "bg-lightgreen-700",
+    "bg-orange-500",
+    "bg-teal-500",
 ];
 
 const cardApproackColors = [
     "bg-blue-100",
-    "bg-green-100",
-    "bg-purple-100",
-    "bg-red-100",
+    "bg-lightgreen-100",
+    "bg-orange-100",
+    "bg-teal-100",
 ];
 
 
@@ -119,7 +119,7 @@ export default function Programs() {
     return (
         <section className="py-16 px-2 mx-auto">
             {/* Small Heading */}
-            <p className="text-md md:text-xl text-blue-600 font-semibold  uppercase tracking-wide text-center">
+            <p className="text-md md:text-xl text-blue-700 font-semibold  uppercase tracking-wide text-center">
                 Our Programs
             </p>
 

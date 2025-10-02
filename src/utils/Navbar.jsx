@@ -33,10 +33,10 @@ export default function Navbar() {
   return (
     <>
       <motion.div
-        className="h-2 bg-blue-600 dark:bg-blue-400 origin-left z-60 fixed top-0 left-0 right-0"
+        className="h-2 bg-blue-500 dark:bg-teal origin-left z-60 fixed top-0 left-0 right-0"
         style={{ scaleX }}
       />
-      <nav className="dark:bg-gray-900 bg-gray-50 shadow-md fixed w-full top-0 left-0 z-50 p-2">
+      <nav className="dark:bg-black bg-gray-100 shadow-md fixed w-full top-0 left-0 z-50 p-2">
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
           <div className="flex justify-between h-16 items-center">
@@ -70,10 +70,10 @@ export default function Navbar() {
                   offset={-80}                // adjust for fixed navbar height
                   duration={400}
                   // activeClass="text-blue-600 font-semibold"
-                  className="cursor-pointer relative text-gray-700 dark:text-gray-50 hover:text-blue-600 dark:hover:text-blue-400 font-medium group"
+                  className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group"
                 >
                   {item.name}
-                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-400 bg-blue-600 transition-all group-hover:w-full"></span>
+                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-400 bg-teal-500 transition-all group-hover:w-full"></span>
                 </Link>
               ))}
 
