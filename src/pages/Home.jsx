@@ -11,25 +11,45 @@ import Testimonials from '../components/Testimonals/Testimonials'
 import Platforms from '../components/Testimonals/Platforms'
 import Contact from '../components/Contact/Contact'
 import ContactCreative from '../components/Contact/ContactCreative'
+import FAQ from '../components/FAQ/FAQ'
+import Team from '../components/Team/Team'
 
 const Home = () => {
   return (
     <div>
-      {/* <Navbar /> */}
-      <About />
-      <WhyUs />
-      <Certification />
+      <Navbar />
+        <section id="home">
+          <About />
+          <WhyUs />
+        </section>
 
-      <Programs />
-      <Impact />
+        <section id="programs">
+          <Programs />
+          <Impact />
+        </section>
 
-      <Process />
-      <Methodology />
 
-      <Testimonials />
-      <Platforms/>
+        <section id="process">
+          <Process />
+          <Methodology />
+        </section>
 
-      <ContactCreative />
+        <section id="testimonial">
+          <Testimonials />
+          <Platforms />
+        </section>
+
+
+        <section id="team">
+          {/* <Team /> */}
+          <Team />
+        </section>
+
+        <section id="contact">
+          <ContactCreative />
+          <FAQ/>
+        </section>
+
     </div>
   )
 }

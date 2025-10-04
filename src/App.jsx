@@ -17,57 +17,30 @@ import ContactCreative from './components/Contact/ContactCreative'
 import FAQ from './components/FAQ/FAQ'
 import Team from './components/Team/Team'
 import Footer from './utils/Footer'
+import Login from './pages/Login'
+import User from './pages/User'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-
-        <section id="home">
-          <About />
-          <WhyUs />
-        </section>
-
-        <section id="programs">
-          <Programs />
-          <Impact />
-        </section>
+        {/* <Navbar /> */}
 
 
-        <section id="process">
-          <Process />
-          <Methodology />
-        </section>
 
-        <section id="testimonial">
-          <Testimonials />
-          <Platforms />
-        </section>
-
-
-        <section id="team">
-          {/* <Team /> */}
-          <Team />
-        </section>
-
-        <section id="contact">
-          <ContactCreative />
-          <FAQ/>
-        </section>
-
-
-        <Footer />
+        
         <Routes>
-          {/* <Route path='/' element={<Home />} /> */}
-          {/* <Route path='/Signup' element={<Signup />} />
+
+        <Route path='/' element={<Home />} />
+          {/* <Route path='/Signup' element={<Signup />} /> */}
         <Route path='/Login' element={<Login />} />
-        <Route path='/AdminLogin' element={<Adminlogin />} />
-        <Route path='/User' element={<ProtectedRoute> <User /> </ProtectedRoute>} />
-        <Route path='/Edit' element={<ProtectedRoute> <Edit /> </ProtectedRoute>} />
-        <Route path='/Vote' element={<ProtectedRoute> <Vote /> </ProtectedRoute>} /> */}
+        {/* <Route path='/AdminLogin' element={<Adminlogin />} /> */}
+        <Route path='/User' element={<User />} />
+        {/* <Route path='/Edit' element={<ProtectedRoute> <Edit /> </ProtectedRoute>} /> */}
+        {/* <Route path='/Vote' element={<ProtectedRoute> <Vote /> </ProtectedRoute>} /> */}
         </Routes>
+        {/* <Footer /> */}
       </BrowserRouter>
     </>
   )

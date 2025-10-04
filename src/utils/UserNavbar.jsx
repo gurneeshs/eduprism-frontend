@@ -2,14 +2,23 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
-import { Link as DomLink } from "react-router-dom";
+import { Link as DomLink, useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "./ThemeContext";
+import { useAuthStore } from "../store/useAuthStore";
 
-export default function Navbar() {
+export default function UserNavbar() {
+  const { authUser, logout } = useAuthStore();
+  const navigte = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
+  const handleLogout = async () => {
+    await logout();
+    navigte("/")
+
+  }
 
   const { scrollYProgress } = useScroll();
 
@@ -22,12 +31,14 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", link: "/", type: "route" },
-    { name: "Programs", link: "programs", type: "scroll" },
-    { name: "Process", link: "process", type: "scroll" },
-    { name: "Testimonial", link: "testimonial", type: "scroll" },
-    { name: "Meet our Team", link: "team", type: "scroll" },
-    { name: "Contact", link: "contact", type: "scroll" },
-    { name: "Login", link: "/login", type: "route" }, // 👈 Route link with DomLink
+    { name: "Dashboard", link: "/User", type: "route" },
+    { name: "Chat", link: "/Chat", type: "route" },
+    // { name: "Programs", link: "programs", type: "scroll" },
+    // { name: "Process", link: "process", type: "scroll" },
+    // { name: "Testimonial", link: "testimonial", type: "scroll" },
+    // { name: "Meet our Team", link: "team", type: "scroll" },
+    // { name: "Contact", link: "contact", type: "scroll" },
+    // { name: authUser ? "Logout" : "Login", link: "/login", type: "route" }, // 👈 Route link with DomLink
   ];
 
   return (
@@ -62,29 +73,24 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
               {navItems.map((item) =>
-                item.type === "scroll" ? (
-                  <Link
-                    key={item.name}
-                    to={item.link}
-                    spy={true}
-                    smooth={true}
-                    offset={-80}
-                    duration={400}
-                    className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group"
-                  >
-                    {item.name}
-                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-400 bg-teal-500 transition-all group-hover:w-full"></span>
-                  </Link>
-                ) : (
-                  <DomLink
-                    key={item.name}
-                    to={item.link}
-                    className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group"
-                  >
-                    {item.name}
-                  </DomLink>
-                )
-              )}
+                <DomLink
+                  key={item.name}
+                  to={item.link}
+                  className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group"
+                >
+                  {item.name}
+                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-400 bg-teal-500 transition-all group-hover:w-full"></span>
+                </DomLink>
+              )
+              }
+              <button
+                onClick={handleLogout}
+                className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group px-2 py-0"
+              >
+                Logout
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-400 bg-teal-500 transition-all group-hover:w-full"></span>
+              </button>
+
             </div>
 
             {/* Theme toggle */}
@@ -140,6 +146,8 @@ export default function Navbar() {
                 )}
               </button>
             </div>
+
+
           </div>
         </div>
 
