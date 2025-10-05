@@ -19,6 +19,7 @@ import Team from './components/Team/Team'
 import Footer from './utils/Footer'
 import Login from './pages/Login'
 import User from './pages/User'
+import ChatHomePage from './pages/ChatHomePage'
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
         <Route path='/Login' element={<Login />} />
         {/* <Route path='/AdminLogin' element={<Adminlogin />} /> */}
         <Route path='/User' element={<User />} />
+        <Route path='/Chat' element={<ChatHomePage />} />
+
         {/* <Route path='/Edit' element={<ProtectedRoute> <Edit /> </ProtectedRoute>} /> */}
         {/* <Route path='/Vote' element={<ProtectedRoute> <Vote /> </ProtectedRoute>} /> */}
         </Routes>

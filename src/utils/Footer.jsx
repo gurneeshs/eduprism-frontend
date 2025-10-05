@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="text-gray-200 py-12">
+    <footer className="text-gray-200 pb-12">
       <div className="mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-gray-400 pt-4 ">
 
         {/* Logo & Description */}
