@@ -28,6 +28,7 @@ export default function Navbar() {
     { name: "Meet our Team", link: "team", type: "scroll" },
     { name: "Contact", link: "contact", type: "scroll" },
     { name: "Login", link: "/login", type: "route" }, // 👈 Route link with DomLink
+    { name:"Signup", link:"/signup", type:"route"}
   ];
 
   return (

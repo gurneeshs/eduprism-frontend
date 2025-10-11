@@ -20,12 +20,15 @@ import Footer from './utils/Footer'
 import Login from './pages/Login'
 import User from './pages/User'
 import ChatHomePage from './pages/ChatHomePage'
+import { Toaster } from 'react-hot-toast'
+import Signup from './pages/Signup'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
+      <Toaster />
         {/* <Navbar /> */}
 
 
@@ -34,11 +37,12 @@ function App() {
         <Routes>
 
         <Route path='/' element={<Home />} />
-          {/* <Route path='/Signup' element={<Signup />} /> */}
+        <Route path='/signup' element={<Signup />} />
         <Route path='/Login' element={<Login />} />
         {/* <Route path='/AdminLogin' element={<Adminlogin />} /> */}
         <Route path='/User' element={<User />} />
         <Route path='/Chat' element={<ChatHomePage />} />
+
 
         {/* <Route path='/Edit' element={<ProtectedRoute> <Edit /> </ProtectedRoute>} /> */}
         {/* <Route path='/Vote' element={<ProtectedRoute> <Vote /> </ProtectedRoute>} /> */}

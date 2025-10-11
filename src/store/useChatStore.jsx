@@ -1,13 +1,20 @@
 import { create } from 'zustand';
 import toast from "react-hot-toast"
 import { axiosInstance } from '../lib/axios';
+import { useAuthStore } from './useAuthStore';
 
-export const useChatStore = create((set) => ({
+
+export const useChatStore = create((set, get) => ({
     messages: [],
     users: [],
+    groups: [],
+    selectedGroup: null,
     selectedUser: null,
     isUsersLoading: false,
+    isGroupLoading: false,
     isMessagesLoading: false,
+    isSendingMessage:false,
+
 
     getUsers: async () => {
         set({ isUsersLoading: true });
@@ -15,10 +22,23 @@ export const useChatStore = create((set) => ({
             const res = await axiosInstance.get("/messages/users");
             set({ users: res.data });
         } catch (error) {
-            toast.error("Error in Getting Users "); 
+            toast.error("Error in Getting Users ");
             console.log(error);
         } finally {
             set({ isUsersLoading: false });
+        }
+    },
+
+    getGroups: async () => {
+        set({ isGroupLoading: true });
+        try {
+            const res = await axiosInstance.get("/groups/getGroups");
+            set({ groups: res.data });
+        } catch (error) {
+            toast.error("Error in Getting Groups ");
+            console.log(error);
+        } finally {
+            set({ isGroupLoading: false });
         }
     },
 
@@ -35,31 +55,68 @@ export const useChatStore = create((set) => ({
         }
     },
 
+    getGroupMessages: async (groupId) => {
+        set({ isMessagesLoading: true });
+        try {
+            const res = await axiosInstance.get(`/groups/${groupId}/messages`);
+            set({ messages: res.data });
+        } catch (err) {
+            toast.error("Error in getting Group Message");
+            console.log(err);
+        }
+        finally {
+            set({ isMessagesLoading: false });
+        }
+    },
+
     sendMessage: async (messageData) => {
+        set({isSendingMessage:true});
         const { selectedUser, messages } = get();
         try {
             const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
             set({ messages: [...messages, res.data] });
         } catch (error) {
-            toast.error("Error in Sending Messages "); 
+            toast.error("Error in Sending Messages ");
+            console.log(error);
+        }finally{
+            set({isSendingMessage:false})
+        }
+    },
+
+    sendGroupMessage: async (messagedata) => {
+        const { messages, selectedGroup } = get();
+        try {
+            // console.log(messagedata);
+            const res = await axiosInstance.post(`/groups/${selectedGroup._id}/messages`, messagedata);
+            set({ messages: [...messages, res.data] });
+        } catch (error) {
+            toast.error("Error in Sending Group Message ");
             console.log(error);
         }
     },
 
     subscribeToMessages: () => {
         const { selectedUser } = get();
+        const authUser = useAuthStore.getState().authUser;
+        // console.log(authUser)
         if (!selectedUser) return;
 
         const socket = useAuthStore.getState().socket;
 
         socket.on("newMessage", (newMessage) => {
             const isMessageSentFromSelectedUser = newMessage.senderId === selectedUser._id;
+
             if (!isMessageSentFromSelectedUser) return;
 
             set({
                 messages: [...get().messages, newMessage],
             });
+            // if (newMessage.senderId !== authUser._id) {
+            //     const audio = new Audio("/notify-sound/notify1.mp3");
+            //     audio.play().catch((err) => console.log("Sound play blocked:", err));
+            // }
         });
+
     },
 
     unsubscribeFromMessages: () => {
@@ -67,6 +124,30 @@ export const useChatStore = create((set) => ({
         socket.off("newMessage");
     },
 
-    setSelectedUser: (selectedUser) => set({ selectedUser }),
+    subscribeToGroupMessages: () => {
+        const socket = useAuthStore.getState().socket;
+        const authUser = useAuthStore.getState().authUser;
+        const {selectedGroup} = get()
+
+        // socket.off("newGroupMessage");
+
+        socket.on("newGroupMessage", (newMessage) => {
+            set({
+                messages: [...get().messages, newMessage],
+            });
+            // if (newMessage.senderId !== authUser._id) {
+            //     const audio = new Audio("/notify-sound/notify1.mp3");
+            //     audio.play().catch((err) => console.log("Sound play blocked:", err));
+            // }
+        });
+    },
+
+    unsubscribeFromGroupMessages: () => {
+        const socket = useAuthStore.getState().socket;
+        socket.off("newGroupMessage");
+    },
+
+    setSelectedUser: (selectedUser) => set({ selectedUser, messages: [] }),
+    setSelectedGroup: (group) => set({ selectedGroup: group, messages: [] }),
 
 }))

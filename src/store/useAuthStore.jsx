@@ -2,6 +2,8 @@ import { create } from "zustand";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import { axiosInstance } from "../lib/axios";
+import { useNavigate } from "react-router-dom";
+const BASE_URL1 = "https://eduprism-backend-chat-service.onrender.com"
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -26,15 +28,24 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
-  signup: async (data) => {
+  signup: async (data, navigate) => {
     set({ isSigningUp: true });
     try {
       const res = await axiosInstance.post("/auth/signup", data);
-      set({ authUser: res.data });
-      toast.success("Account created successfully");
-      get().connectSocket();
+      if (res.data.success) {
+        set({ authUser: res.data.user });
+        toast.success("Account created successfully");
+        await get().connectSocket();
+        navigate("/User");
+      }
+      else{
+        toast.error("Failed to SignUp User");
+      }
+
+
     } catch (error) {
       toast.error(error.response.data.message);
+
     } finally {
       set({ isSigningUp: false });
     }
@@ -44,7 +55,7 @@ export const useAuthStore = create((set, get) => ({
     set({ isLoggingIn: true });
     try {
       const res = await axiosInstance.post("/auth/login", data);
-      console.log(res.data.user)
+      // console.log(res.data.user)
       set({ authUser: res.data.user });
       toast.success("Logged in successfully");
 
@@ -85,7 +96,7 @@ export const useAuthStore = create((set, get) => ({
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
 
-    const socket = io(BASE_URL, {
+    const socket = io(BASE_URL1, {
       query: {
         userId: authUser._id,
       },
@@ -97,6 +108,26 @@ export const useAuthStore = create((set, get) => ({
     socket.on("getOnlineUsers", (userIds) => {
       set({ onlineUsers: userIds });
     });
+    socket.off("newGroupMessageSnd");
+    socket.off("newMessageSnd")
+    socket.on("newGroupMessageSnd", (newMessage) => {
+      if (newMessage.senderId !== authUser._id) {
+        console.log("beeping");
+
+        const audio = new Audio("/notify-sound/notify1.mp3");
+        audio.play().catch((err) => console.log("Sound play blocked:", err));
+      }
+    });
+    socket.on("newMessageSnd", (newMessage) => {
+      if (newMessage.senderId !== authUser._id) {
+        console.log("beeping");
+
+        const audio = new Audio("/notify-sound/notify2.mp3");
+        audio.play().catch((err) => console.log("Sound play blocked:", err));
+      }
+    });
+
+
   },
   disconnectSocket: () => {
     if (get().socket?.connected) get().socket.disconnect();

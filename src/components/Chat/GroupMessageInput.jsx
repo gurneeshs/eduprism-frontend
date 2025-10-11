@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
 // import { useChatStore } from "../store/useChatStore";
-import { Image, Send, X, Loader2 } from "lucide-react";
+import { Image, Send, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { useChatStore } from "../../store/useChatStore";
+import { useAuthStore } from "../../store/useAuthStore";
 
-const MessageInput = () => {
+const GroupMessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { sendMessage,isSendingMessage } = useChatStore();
+  const {authUser} = useAuthStore();
+  const { sendGroupMessage } = useChatStore();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -34,7 +36,7 @@ const MessageInput = () => {
     if (!text.trim() && !imagePreview) return;
 
     try {
-      await sendMessage({
+      await sendGroupMessage({
         text: text.trim(),
         image: imagePreview,
       });
@@ -49,7 +51,7 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="p-3 px-8 w-full bg-gray-100 rounded-2xl z-10">
+    <div className="p-3 px-5 w-full bg-gray-100 rounded-2xl">
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
           <div className="relative">
@@ -89,23 +91,22 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle hover:text-green-700 cursor-pointer
-                     ${imagePreview ? "text-emerald-500" : "text-green-500"}`}
+            className={`hidden sm:flex btn btn-circle
+                     ${imagePreview ? "text-emerald-500" : "text-gray-700"}`}
             onClick={() => fileInputRef.current?.click()}
           >
-            <Image size={24} />
+            <Image size={20} />
           </button>
         </div>
         <button
           type="submit"
-          className="btn btn-sm btn-circle text-blue-500 hover:text-blue-700 cursor-pointer p-1.5"
-          disabled={(!text.trim() && !imagePreview) || isSendingMessage}
+          className="btn btn-sm btn-circle text-gray-200 rounded-full bg-blue-500 p-1.5"
+          disabled={!text.trim() && !imagePreview}
         >
-          
-          {isSendingMessage ? (<Loader2 className="w-6 h-6 animate-spin" />) :(<Send size={24} />)}
+          <Send size={22} />
         </button>
       </form>
     </div>
   );
 };
-export default MessageInput;
+export default GroupMessageInput;

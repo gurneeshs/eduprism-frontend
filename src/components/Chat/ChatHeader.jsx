@@ -7,7 +7,7 @@ const ChatHeader = () => {
     const { selectedUser, setSelectedUser } = useChatStore();
     const { onlineUsers } = useAuthStore();
     return (
-        <div className="p-2 px-4 border-b-3 border-gray-300 bg-blue-100 h-15">
+        <div className="p-2 px-4 border-b-1 border-gray-300 bg-gray-100 h-15 z-10">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
                     {/* User info */}
@@ -23,10 +23,13 @@ const ChatHeader = () => {
 
                         {/* Name and Status */}
                         <div className="flex flex-col">
-                            <h3 className="font-medium leading-tight">{selectedUser.fullName}</h3>
-                            <p className="text-sm text-base-content/70 m-0 text-left">
-                                {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
-                            </p>
+                            <h3 className="font-medium text-lg leading-tight">{selectedUser.fullName}</h3>
+                            {onlineUsers.includes(selectedUser._id) ? (
+                                <p className="text-sm text-lightgreen-700 m-0 font-semibold text-left">Online</p>
+                            ) : (
+                                <p className="text-sm text-red-700 font-semibold m-0 text-left">Offline</p>
+                            )}
+
                         </div>
                     </div>
 

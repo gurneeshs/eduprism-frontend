@@ -67,46 +67,56 @@ button:focus-visible {
   }
 } */
 @import "tailwindcss";
+
 @theme {
+  --color-background: #f4f4df84;
+
   --color-yellow-100: #FFF9CC;
   --color-yellow-300: #FFF176;
-  --color-yellow-500: #F9E71C; /* base from logo */
+  --color-yellow-500: #F9E71C;
+  /* base from logo */
   --color-yellow-700: #C7B200;
 
   /* 🌿 Green */
   --color-green-100: #D9F5E0;
   --color-green-300: #66C78B;
-  --color-green-500: #009444; /* base */
+  --color-green-500: #009444;
+  /* base */
   --color-green-700: #006633;
 
   /* 💚 Light Green */
   --color-lightgreen-100: #E9F7D9;
   --color-lightgreen-300: #B5E27A;
-  --color-lightgreen-500: #8CC63F; /* base */
+  --color-lightgreen-500: #8CC63F;
+  /* base */
   --color-lightgreen-700: #5A8C26;
 
   /* 🟠 Orange */
   --color-orange-100: #FFDACC;
   --color-orange-300: #FF9466;
-  --color-orange-500: #F15A29; /* base */
+  --color-orange-500: #f48b1e;
+  /* base */
   --color-orange-700: #992600;
 
   /* 🔶 Red-Orange */
   --color-redorange-100: #FFE3CC;
   --color-redorange-300: #FFB266;
-  --color-redorange-500: #F7941D; /* base */
+  --color-redorange-500: #F7941D;
+  /* base */
   --color-redorange-700: #994D00;
 
   /* 🔵 Blue */
   --color-blue-100: #D2F0FB;
   --color-blue-300: #6CCAF2;
-  --color-blue-500: #27AAE1; /* base */
+  --color-blue-500: #298cb3;
+  /* base */
   --color-blue-700: #006A99;
 
   /* 🟦 Teal */
   --color-teal-100: #CDEAE6;
   --color-teal-300: #4DB8A7;
-  --color-teal-500: #007A6D; /* base */
+  --color-teal-500: #007A6D;
+  /* base */
   --color-teal-700: #004D40;
 
   --color-lightgray: #EAEAEA;
@@ -115,32 +125,62 @@ button:focus-visible {
   --color-darkgray: #707070;
   --color-darker: #3A3A3A;
 }
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 html {
   scroll-behavior: smooth;
 }
+
 /* keep body as stacking context */
 body {
-  position: relative;   /* important */
-  z-index: 0;           /* ensures pseudo stays behind content but above page background */
-  background-color: #fafaf4; 
+  position: relative;
+  /* important */
+  z-index: 0;
+  /* ensures pseudo stays behind content but above page background */
+  background-color: #f4f4df84;
 }
+
 .dark body {
-  background-color: #111111; 
+  background-color: #111111;
 }
+
 /* background image on pseudo-element so we can control its opacity */
-body::before{
+body::before {
   /* content: ""; */
-  position: fixed;      /* fi
+  position: fixed;
+  /* fi
   inset: 0;             /* top:0; right:0; bottom:0; left:0 */
   /* background-image: url('/background/lightBackground2.jpg'); */
   /* background-repeat: no-repeat; */
   /* background-position: center; */
-  background-size: cover; /* or cover if you want full-cover */
-  opacity: 0.45;        /* <-- control transparency here */
-  pointer-events: none; /* allow clicks through the image */
-  z-index: -1;          /* behind page content */
+  background-size: cover;
+  /* or cover if you want full-cover */
+  opacity: 0.45;
+  /* <-- control transparency here */
+  pointer-events: none;
+  /* allow clicks through the image */
+  z-index: -1;
+  /* behind page content */
+}
+
+.chatContainer {
+  position: relative;
+  z-index: 1; /* ensures content is above pseudo */
+}
+
+.chatContainer::before {
+  content: ""; /* must have */
+  position: absolute; /* relative to chatContainer */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/background/chatback.png"); /* Vite public folder */
+  background-size: contain;
+  background-position: center;
+  opacity: 0.75;
+  z-index: -1; /* behind content */
 }
 
 /* .dark body::before {
