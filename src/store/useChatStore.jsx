@@ -18,6 +18,7 @@ export const useChatStore = create((set, get) => ({
     isGroupLoading: false,
     isMessagesLoading: false,
     isSendingMessage: false,
+    isSendingGroupMessage:false,
     isChatOpen: false,
     openChat: () => set({ isChatOpen: true }),
     closeChat: () => set({ isChatOpen: false }),
@@ -58,8 +59,6 @@ export const useChatStore = create((set, get) => ({
             set({ isTeacherLoading: false });
         }
     },
-
-
     getGroups: async () => {
         set({ isGroupLoading: true });
         try {
@@ -85,7 +84,6 @@ export const useChatStore = create((set, get) => ({
             set({ isMessagesLoading: false });
         }
     },
-
     getGroupMessages: async (groupId) => {
         set({ isMessagesLoading: true });
         try {
@@ -115,6 +113,7 @@ export const useChatStore = create((set, get) => ({
     },
 
     sendGroupMessage: async (messagedata) => {
+        set({isSendingGroupMessage:true})
         const { messages, selectedGroup } = get();
         try {
             // console.log(messagedata);
@@ -123,6 +122,8 @@ export const useChatStore = create((set, get) => ({
         } catch (error) {
             toast.error("Error in Sending Group Message ");
             console.log(error);
+        }finally{
+            set({isSendingGroupMessage:false});
         }
     },
 

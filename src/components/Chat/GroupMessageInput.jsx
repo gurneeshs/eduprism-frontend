@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 // import { useChatStore } from "../store/useChatStore";
-import { Image, Send, X } from "lucide-react";
+import { Image, Send, X, Loader2} from "lucide-react";
 import toast from "react-hot-toast";
 import { useChatStore } from "../../store/useChatStore";
 import { useAuthStore } from "../../store/useAuthStore";
@@ -10,7 +10,7 @@ const GroupMessageInput = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
   const {authUser} = useAuthStore();
-  const { sendGroupMessage } = useChatStore();
+  const { sendGroupMessage,isSendingGroupMessage } = useChatStore();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -89,21 +89,22 @@ const GroupMessageInput = () => {
             onChange={handleImageChange}
           />
 
-          <button
+         <button
             type="button"
-            className={`hidden sm:flex btn btn-circle
-                     ${imagePreview ? "text-emerald-500" : "text-gray-700"}`}
+            className={`hidden sm:flex btn btn-circle hover:text-green-700 cursor-pointer
+                     ${imagePreview ? "text-emerald-500" : "text-green-500"}`}
             onClick={() => fileInputRef.current?.click()}
           >
-            <Image size={20} />
+            <Image size={24} />
           </button>
         </div>
         <button
           type="submit"
-          className="btn btn-sm btn-circle text-gray-200 rounded-full bg-blue-500 p-1.5"
-          disabled={!text.trim() && !imagePreview}
+          className="btn btn-sm btn-circle text-blue-500 hover:text-blue-700 cursor-pointer p-1.5"
+          disabled={(!text.trim() && !imagePreview) || isSendingGroupMessage}
         >
-          <Send size={22} />
+          
+          {isSendingGroupMessage ? (<Loader2 className="w-6 h-6 animate-spin" />) :(<Send size={24} />)}
         </button>
       </form>
     </div>
