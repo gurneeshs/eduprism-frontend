@@ -7,14 +7,20 @@ import { useAuthStore } from './useAuthStore';
 export const useChatStore = create((set, get) => ({
     messages: [],
     users: [],
+    students: [],
+    teachers: [],
     groups: [],
     selectedGroup: null,
     selectedUser: null,
     isUsersLoading: false,
+    isStudentLoading: false,
+    isTeacherLoading: false,
     isGroupLoading: false,
     isMessagesLoading: false,
-    isSendingMessage:false,
-
+    isSendingMessage: false,
+    isChatOpen: false,
+    openChat: () => set({ isChatOpen: true }),
+    closeChat: () => set({ isChatOpen: false }),
 
     getUsers: async () => {
         set({ isUsersLoading: true });
@@ -28,6 +34,31 @@ export const useChatStore = create((set, get) => ({
             set({ isUsersLoading: false });
         }
     },
+    getStudents: async () => {
+        set({ isStudentLoading: true });
+        try {
+            const res = await axiosInstance.get("/messages/students");
+            set({ students: res.data });
+        } catch (error) {
+            toast.error("Error in Getting Users ");
+            console.log(error);
+        } finally {
+            set({ isStudentLoading: false });
+        }
+    },
+    getTeachers: async () => {
+        set({ isTeacherLoading: true });
+        try {
+            const res = await axiosInstance.get("/messages/teachers");
+            set({ teachers: res.data });
+        } catch (error) {
+            toast.error("Error in Getting Users ");
+            console.log(error);
+        } finally {
+            set({ isTeacherLoading: false });
+        }
+    },
+
 
     getGroups: async () => {
         set({ isGroupLoading: true });
@@ -70,7 +101,7 @@ export const useChatStore = create((set, get) => ({
     },
 
     sendMessage: async (messageData) => {
-        set({isSendingMessage:true});
+        set({ isSendingMessage: true });
         const { selectedUser, messages } = get();
         try {
             const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
@@ -78,8 +109,8 @@ export const useChatStore = create((set, get) => ({
         } catch (error) {
             toast.error("Error in Sending Messages ");
             console.log(error);
-        }finally{
-            set({isSendingMessage:false})
+        } finally {
+            set({ isSendingMessage: false })
         }
     },
 
@@ -127,7 +158,7 @@ export const useChatStore = create((set, get) => ({
     subscribeToGroupMessages: () => {
         const socket = useAuthStore.getState().socket;
         const authUser = useAuthStore.getState().authUser;
-        const {selectedGroup} = get()
+        const { selectedGroup } = get()
 
         // socket.off("newGroupMessage");
 

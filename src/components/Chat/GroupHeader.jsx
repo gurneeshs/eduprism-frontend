@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { useChatStore } from "../../store/useChatStore";
 const GroupHeader = () => {
-  const { selectedGroup, setSelectedGroup } = useChatStore();
+  const { selectedGroup, setSelectedGroup, closeChat } = useChatStore();
 
   return (
     <div className="p-3 px-5 border-b border-gray-300 bg-gray-50">
@@ -25,7 +25,10 @@ const GroupHeader = () => {
 
         {/* Close button */}
         <button
-          onClick={() => setSelectedGroup(null)}
+          onClick={() => {
+            setSelectedGroup(null)
+            closeChat();
+            }}
           className="text-gray-500 hover:text-gray-800"
         >
           <X size={20} />

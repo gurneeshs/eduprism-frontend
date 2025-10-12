@@ -6,7 +6,7 @@ import MessageSkeleton from './MessageSkeleton';
 import { useAuthStore } from '../../store/useAuthStore';
 
 const ChatContainer = () => {
-    const { messages, getMessages, isMessagesLoding, selectedUser, subscribeToMessages, unsubscribeFromMessages } = useChatStore();
+    const { messages, getMessages, isMessagesLoding, selectedUser, subscribeToMessages, unsubscribeFromMessages,isChatOpen, openChat, closeChat } = useChatStore();
     const {authUser} = useAuthStore();
     const messageEndRef = useRef(null);
 
@@ -42,7 +42,7 @@ const ChatContainer = () => {
 
 
     return (
-        <div className='flex-1 flex flex-col overflow-auto chatContainer'>
+        <div className={`flex-1 flex flex-col overflow-auto chatContainer transition-transform duration-300 ${isChatOpen ? "translate-x-0" : "translate-x-full"} lg:translate-x-0 absolute lg:relative`}>
             <ChatHeader />
             <div className="flex-1 overflow-y-auto p-4 space-y-6 bg-transparent">
             

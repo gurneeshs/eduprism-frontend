@@ -16,6 +16,7 @@ const GroupChatContainer = () => {
         selectedGroup,
         subscribeToGroupMessages,
         unsubscribeFromGroupMessages,
+        isChatOpen
     } = useChatStore();
 
     const { authUser } = useAuthStore();
@@ -68,7 +69,7 @@ const GroupChatContainer = () => {
         );
 
     return (
-        <div className="flex-1 flex flex-col overflow-auto bg-background">
+        <div className={`flex-1 flex flex-col overflow-auto chatContainer transition-transform duration-300 ${isChatOpen ? "translate-x-0" : "translate-x-full"} lg:translate-x-0 absolute lg:relative`}>
             <GroupHeader />
 
             {/* Chat Messages */}

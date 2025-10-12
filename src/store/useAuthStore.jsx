@@ -3,22 +3,32 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import { axiosInstance } from "../lib/axios";
 import { useNavigate } from "react-router-dom";
-const BASE_URL1 = "https://eduprism-backend-chat-service.onrender.com"
+import { BASE_URL } from "../utils/helper";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
   isSigningUp: false,
   isLoggingIn: false,
+  isLoggingOut: false,
   isUpdatingProfile: false,
   isCheckingAuth: true,
   onlineUsers: [],
   socket: null,
+  tabs: [],
 
   checkAuth: async () => {
     try {
       const res = await axiosInstance.get("/auth/check");
+      // console.log(res.data);
 
       set({ authUser: res.data });
+      if (res.data.role === "student") {
+        set({ tabs: ["Teachers", "Groups"] });
+      } else if (res.data.role === "teacher") {
+        set({ tabs: ["Students", "Teachers", "Groups"] });
+      } else if (res.data.role === "admin") {
+        set({ tabs: ["All", "Students", "Teachers", "Groups"] });
+      }
       get().connectSocket();
     } catch (error) {
       console.log("Error in checkAuth:", error);
@@ -34,11 +44,18 @@ export const useAuthStore = create((set, get) => ({
       const res = await axiosInstance.post("/auth/signup", data);
       if (res.data.success) {
         set({ authUser: res.data.user });
+        if (res.data.user.role === "student") {
+          set({ tabs: ["Teachers", "Groups"] });
+        } else if (res.data.user.role === "teacher") {
+          set({ tabs: ["Students", "Teachers", "Groups"] });
+        } else if (res.data.user.role === "admin") {
+          set({ tabs: ["All", "Students", "Teachers", "Groups"] });
+        }
         toast.success("Account created successfully");
         await get().connectSocket();
-        navigate("/User");
+        navigate("/Chat");
       }
-      else{
+      else {
         toast.error("Failed to SignUp User");
       }
 
@@ -51,15 +68,22 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
-  login: async (data) => {
+  login: async (data, navigate) => {
     set({ isLoggingIn: true });
     try {
       const res = await axiosInstance.post("/auth/login", data);
       // console.log(res.data.user)
       set({ authUser: res.data.user });
+      if (res.data.user.role === "student") {
+        set({ tabs: ["Teachers", "Groups"] });
+      } else if (res.data.user.role === "teacher") {
+        set({ tabs: ["Students", "Teachers", "Groups"] });
+      } else if (res.data.user.role === "admin") {
+        set({ tabs: ["All", "Students", "Teachers", "Groups"] });
+      }
       toast.success("Logged in successfully");
-
       get().connectSocket();
+      navigate("/Chat");
     } catch (error) {
       toast.error("Error in login");
     } finally {
@@ -67,14 +91,18 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
-  logout: async () => {
+  logout: async (navigate) => {
+    set({ isLoggingOut: true });
     try {
       await axiosInstance.post("/auth/logout");
       set({ authUser: null });
       toast.success("Logged out successfully");
       get().disconnectSocket();
+      navigate("/")
     } catch (error) {
       toast.error(error.response.data.message);
+    } finally {
+      set({ isLoggingOut: false })
     }
   },
 
@@ -96,7 +124,7 @@ export const useAuthStore = create((set, get) => ({
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
 
-    const socket = io(BASE_URL1, {
+    const socket = io(BASE_URL, {
       query: {
         userId: authUser._id,
       },

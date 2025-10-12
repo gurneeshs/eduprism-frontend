@@ -22,11 +22,10 @@ const ChatHomePage = () => {
 
   return (
     <div>
-        {/* <UserNavbar/> */}
         <ChatNavbar />
         <div className='flex items-center justify-center'>
             <div className='rounded-lg shadow-cl w-full h-[calc(88vh)]'>
-                <div className='flex h-full rounded-lg overflow-hidden'>
+                <div className='flex h-full rounded-lg overflow-hidden relative'>
                     <ChatSidebar />
 
                     {!selectedUser ? (!selectedGroup ? <NoChatSelected /> : <GroupChatContainer/>) : (<ChatContainer />)}
