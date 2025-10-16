@@ -18,10 +18,28 @@ export const useChatStore = create((set, get) => ({
     isGroupLoading: false,
     isMessagesLoading: false,
     isSendingMessage: false,
-    isSendingGroupMessage:false,
+    isSendingGroupMessage: false,
     isChatOpen: false,
+    unreadCounts: {},
     openChat: () => set({ isChatOpen: true }),
     closeChat: () => set({ isChatOpen: false }),
+
+    incrementUnreadCount: (userId, amount = 1) =>
+        set((state) => ({
+            unreadCounts: {
+                ...state.unreadCounts,
+                [userId]: (state.unreadCounts[userId] || 0) + amount,
+            },
+        })),
+
+    // reset unread count for a user (set to 0)
+    resetUnreadCount: (userId) =>
+        set((state) => ({
+            unreadCounts: {
+                ...state.unreadCounts,
+                [userId]: 0,
+            },
+        })),
 
     getUsers: async () => {
         set({ isUsersLoading: true });
@@ -113,7 +131,7 @@ export const useChatStore = create((set, get) => ({
     },
 
     sendGroupMessage: async (messagedata) => {
-        set({isSendingGroupMessage:true})
+        set({ isSendingGroupMessage: true })
         const { messages, selectedGroup } = get();
         try {
             // console.log(messagedata);
@@ -122,8 +140,8 @@ export const useChatStore = create((set, get) => ({
         } catch (error) {
             toast.error("Error in Sending Group Message ");
             console.log(error);
-        }finally{
-            set({isSendingGroupMessage:false});
+        } finally {
+            set({ isSendingGroupMessage: false });
         }
     },
 
@@ -179,7 +197,35 @@ export const useChatStore = create((set, get) => ({
         socket.off("newGroupMessage");
     },
 
-    setSelectedUser: (selectedUser) => set({ selectedUser, messages: [] }),
-    setSelectedGroup: (group) => set({ selectedGroup: group, messages: [] }),
+    setSelectedUser: (selectedUser) => {
+        const socket = useAuthStore.getState().socket;
+        const authUser = useAuthStore.getState().authUser;
+        const message = useChatStore.getState().messages;
+        // console.log(message.length)
+
+        set((state) => {
+            const currentSelectedUser = state.selectedUser;
+
+            // Case 1: Deselect (null)
+            if (selectedUser == null) {
+                // console.log("inactive msg reset");
+                socket.emit("inactiveChat", { userId1: authUser._id });
+                return { selectedUser: null, messages: [] };
+            }
+
+            // Case 2: Selecting a new user (different one)
+            if (currentSelectedUser?._id !== selectedUser?._id) {
+                // console.log("active msg reset");
+                socket.emit("activeChat", { userId1: authUser._id, partnerId: selectedUser._id });
+                return { selectedUser, messages: [] };
+            }
+
+            // Case 3: Clicking the same user again → do nothing
+            console.log("same user clicked — no reset");
+            return {};
+        });
+    },
+
+    setSelectedGroup: (group) => set({ selectedGroup: group }),
 
 }))

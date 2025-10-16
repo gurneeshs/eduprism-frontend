@@ -4,6 +4,8 @@ import { io } from "socket.io-client";
 import { axiosInstance } from "../lib/axios";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/helper";
+import { useChatStore } from "./useChatStore";
+
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -122,6 +124,7 @@ export const useAuthStore = create((set, get) => ({
 
   connectSocket: () => {
     const { authUser } = get();
+
     if (!authUser || get().socket?.connected) return;
 
     const socket = io(BASE_URL, {
@@ -137,7 +140,8 @@ export const useAuthStore = create((set, get) => ({
       set({ onlineUsers: userIds });
     });
     socket.off("newGroupMessageSnd");
-    socket.off("newMessageSnd")
+    socket.off("newMessageSnd");
+    socket.off("newMessageSnd1");
     socket.on("newGroupMessageSnd", (newMessage) => {
       if (newMessage.senderId !== authUser._id) {
         console.log("beeping");
@@ -146,10 +150,20 @@ export const useAuthStore = create((set, get) => ({
         audio.play().catch((err) => console.log("Sound play blocked:", err));
       }
     });
+    socket.on("newMessageSnd1", ()=>{
+      const chatStore = useChatStore.getState();
+      // const selectedUser = chatStore.selectedUser;
+      chatStore.getStudents()
+      chatStore.getTeachers()
+    })
     socket.on("newMessageSnd", (newMessage) => {
+      const chatStore = useChatStore.getState();
+      const selectedUser = chatStore.selectedUser;
+      chatStore.getStudents()
+      chatStore.getTeachers()
+      
       if (newMessage.senderId !== authUser._id) {
         console.log("beeping");
-
         const audio = new Audio("/notify-sound/notify2.mp3");
         audio.play().catch((err) => console.log("Sound play blocked:", err));
       }

@@ -6,6 +6,9 @@ import MessageSkeleton from "./MessageSkeleton";
 
 import GroupHeader from "./GroupHeader";
 import GroupMessageInput from "./GroupMessageInput";
+import dayjs from 'dayjs';
+import calendar from "dayjs/plugin/calendar";
+dayjs.extend(calendar);
 
 
 const GroupChatContainer = () => {
@@ -52,6 +55,16 @@ const GroupChatContainer = () => {
             minute: "2-digit",
         }).format(new Date(date));
 
+    const groupMessagesByDate = (msgs) => {
+        return msgs.reduce((acc, msg) => {
+            const dateKey = dayjs(msg.createdAt).format('YYYY-MM-DD');
+            if (!acc[dateKey]) acc[dateKey] = [];
+            acc[dateKey].push(msg);
+            return acc;
+        }, {});
+    };
+    const groupedMessages = groupMessagesByDate(messages || []);
+
     if (isMessagesLoading)
         return (
             <div className="flex-1 flex flex-col overflow-auto">
@@ -79,15 +92,27 @@ const GroupChatContainer = () => {
                         No messages yet. Start the conversation!
                     </p>
                 ) : (
-                    messages.map((message) => {
-                        const isOwnMessage = message.senderId == authUser._id;
-                        {/* console.log(message.senderId._id, " ", authUser._id) */ }
+                    Object.keys(groupedMessages).map((date) => (
+                        <div key={date}>
+                            <div className="flex justify-center my-3">
+                                <span className="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">
+                                    {dayjs(date).calendar(null, {
+                                        sameDay: '[Today]',
+                                        lastDay: '[Yesterday]',
+                                        lastWeek: 'dddd, MMM D',
+                                        sameElse: 'MMM D, YYYY',
+                                    })}
+                                </span>
+                            </div>
+                    {groupedMessages[date].map((message) => {
+                            const isOwnMessage = message.senderId == authUser._id;
+                            {/* console.log(message.senderId._id, " ", authUser._id) */}
 
-                        return (
+                            return (
                             <div
                                 key={message._id}
                                 ref={messageEndRef}
-                                className={`flex items-start gap-3 ${isOwnMessage ? "flex-row-reverse" : "flex-row"
+                                className={`flex my-2 items-start gap-3 ${isOwnMessage ? "flex-row-reverse" : "flex-row"
                                     }`}
                             >
                                 {/* Avatar */}
@@ -143,9 +168,13 @@ const GroupChatContainer = () => {
                                     </div>
                                 </div>
                             </div>
-                        );
-                    })
-                )}
+                            );
+                        })}
+
+                        </div>
+
+
+                    )))}
             </div>
 
             <GroupMessageInput />
