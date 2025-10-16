@@ -29,9 +29,9 @@ const ChatSidebar = () => {
 
 
     useEffect(() => {
-        getUsers(),
+        // getUsers(),
             getGroups()
-    }, [getGroups, getUsers])
+    }, [getGroups])
 
     useEffect(() => {
         getStudents()
@@ -234,31 +234,51 @@ const ChatSidebar = () => {
                                         setSelectedGroup(group);
                                         setSelectedUser(null);
                                         openChat();
+                                        group.unreadCount = 0; // clear unread locally when opened
                                     }}
-                                    className={`w-full p-3 flex items-center gap-3 hover:bg-gray-100 transition-colors border-b border-gray-300 ${selectedGroup?._id === group._id ? "bg-blue-100" : ""
+                                    className={`w-full p-3 flex items-center justify-between hover:bg-gray-100 transition-colors border-b border-gray-300 ${selectedGroup?._id === group._id ? "bg-blue-100" : ""
                                         }`}
                                 >
-                                    {/* Group Avatar */}
-                                    <div className="relative mx-0">
-                                        <img
-                                            src={group.groupImage || "/group.png"}
-                                            alt={group.name}
-                                            className="size-12 object-cover rounded-full border"
-                                        />
+                                    {/* Left Section: Avatar + Group Info */}
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <div className="relative">
+                                            <img
+                                                src={group.groupImage || "/group.png"}
+                                                alt={group.name}
+                                                className="size-12 object-cover rounded-full border"
+                                            />
+                                        </div>
+
+                                        <div className="block text-left min-w-0">
+                                            <div className="font-semibold text-md truncate">{group.name}</div>
+                                            <div className="text-sm text-gray-500 truncate">
+                                                {group.members?.length || 0} members
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    {/* Group Info */}
-                                    <div className="block text-left min-w-0">
-                                        <div className="font-semibold text-md truncate">{group.name}</div>
-                                        <div className="text-sm text-gray-500 truncate">
-                                            {group.members?.length || 0} members
-                                        </div>
+                                    {/* Right Section: Last Message Timestamp + Unread Badge */}
+                                    <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
+                                        {/* Date / Time Display */}
+                                        {group.lastMessageAt && (
+                                            <div className="text-xs text-gray-500 font-medium">
+                                                {formatChatTime(group.lastMessageAt)}
+                                            </div>
+                                        )}
+
+                                        {/* Unread Badge */}
+                                        {group.unreadCount > 0 && (
+                                            <div className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
+                                                {group.unreadCount}
+                                            </div>
+                                        )}
                                     </div>
                                 </button>
                             ))
                         )}
                     </>
                 )}
+
             </div>
         </aside>
     );

@@ -210,14 +210,14 @@ export const useChatStore = create((set, get) => ({
             if (selectedUser == null) {
                 // console.log("inactive msg reset");
                 socket.emit("inactiveChat", { userId1: authUser._id });
-                return { selectedUser: null, messages: [] };
+                return { selectedUser: null };
             }
 
             // Case 2: Selecting a new user (different one)
             if (currentSelectedUser?._id !== selectedUser?._id) {
                 // console.log("active msg reset");
                 socket.emit("activeChat", { userId1: authUser._id, partnerId: selectedUser._id });
-                return { selectedUser, messages: [] };
+                return { selectedUser };
             }
 
             // Case 3: Clicking the same user again → do nothing
@@ -226,6 +226,30 @@ export const useChatStore = create((set, get) => ({
         });
     },
 
-    setSelectedGroup: (group) => set({ selectedGroup: group }),
+    setSelectedGroup: (selectedGroup) => {
+        const socket = useAuthStore.getState().socket;
+        const authUser = useAuthStore.getState().authUser;
+
+        set((state) => {
+            const currentSelectedGroup = state.selectedGroup;
+
+            // Case 1: Deselect (null)
+            if (selectedGroup == null) {
+                socket.emit("inactiveGroupChat", { groupId: currentSelectedGroup?._id, userId: authUser._id });
+                return { selectedGroup: null};
+            }
+
+            // Case 2: Selecting a new group
+            if (currentSelectedGroup?._id !== selectedGroup?._id) {
+                socket.emit("activeGroupChat", { groupId: selectedGroup._id, userId: authUser._id });
+                return { selectedGroup};
+            }
+
+            // Case 3: Clicking same group again → do nothing
+            console.log("same group clicked — no reset");
+            return {};
+        });
+    },
+
 
 }))

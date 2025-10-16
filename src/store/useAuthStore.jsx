@@ -143,6 +143,8 @@ export const useAuthStore = create((set, get) => ({
     socket.off("newMessageSnd");
     socket.off("newMessageSnd1");
     socket.on("newGroupMessageSnd", (newMessage) => {
+      const chatStore = useChatStore.getState();
+        chatStore.getGroups()
       if (newMessage.senderId !== authUser._id) {
         console.log("beeping");
 

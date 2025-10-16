@@ -15,6 +15,10 @@ const ChatContainer = () => {
     isMessagesLoding,
     selectedUser,
     subscribeToMessages,
+    subscribeToGroupMessages,
+    selectedGroup,
+    unsubscribeFromGroupMessages,
+    getGroupMessages,
     unsubscribeFromMessages,
     isChatOpen,
   } = useChatStore();
@@ -26,6 +30,9 @@ const ChatContainer = () => {
   useEffect(() => {
     subscribeToMessages();
   }, [subscribeToMessages]);
+  useEffect(() => {
+    subscribeToGroupMessages();
+  }, [subscribeToGroupMessages]);
 
   // fetch messages on user change
   useEffect(() => {
@@ -33,6 +40,12 @@ const ChatContainer = () => {
     // console.log(messages.length)
     return () => unsubscribeFromMessages();
   }, [selectedUser?._id, getMessages, unsubscribeFromMessages]);
+
+  useEffect(() => {
+    if (selectedGroup?._id) getGroupMessages(selectedGroup._id);
+    // console.log(messages.length)
+    return () => unsubscribeFromGroupMessages();
+  }, [selectedGroup?._id, getGroupMessages, unsubscribeFromGroupMessages]);
 
   // auto scroll to bottom on new messages
   useEffect(() => {
@@ -70,9 +83,8 @@ const ChatContainer = () => {
 
   return (
     <div
-      className={`flex-1 flex flex-col overflow-auto chatContainer transition-transform duration-300 ${
-        isChatOpen ? 'translate-x-0' : 'translate-x-full'
-      } lg:translate-x-0 absolute lg:relative`}
+      className={`flex-1 flex flex-col overflow-auto chatContainer transition-transform duration-300 ${isChatOpen ? 'translate-x-0' : 'translate-x-full'
+        } lg:translate-x-0 absolute lg:relative`}
     >
       <ChatHeader />
 
@@ -99,9 +111,8 @@ const ChatContainer = () => {
                 <div
                   key={message._id}
                   ref={messageEndRef}
-                  className={`flex items-start gap-3 ${
-                    isOwnMessage ? 'flex-row-reverse' : 'flex-row'
-                  }`}
+                  className={`flex items-start gap-3 ${isOwnMessage ? 'flex-row-reverse' : 'flex-row'
+                    }`}
                 >
                   {/* Avatar */}
                   <div className="w-10 h-10 rounded-full border overflow-hidden">
@@ -118,9 +129,8 @@ const ChatContainer = () => {
 
                   {/* Message Bubble */}
                   <div
-                    className={`flex flex-col ${
-                      isOwnMessage ? 'items-end' : 'items-start'
-                    } gap-1`}
+                    className={`flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'
+                      } gap-1`}
                   >
                     {/* Time */}
                     <time className="text-xs text-gray-500">
@@ -128,11 +138,10 @@ const ChatContainer = () => {
                     </time>
 
                     <div
-                      className={`rounded-2xl p-3 max-w-xs break-words shadow-sm ${
-                        isOwnMessage
-                          ? 'bg-blue-500 text-gray-50 rounded-tr-none'
-                          : 'bg-lightgreen-500 text-gray-50 rounded-tl-none'
-                      }`}
+                      className={`rounded-2xl p-3 max-w-xs break-words shadow-sm ${isOwnMessage
+                        ? 'bg-blue-500 text-gray-50 rounded-tr-none'
+                        : 'bg-lightgreen-500 text-gray-50 rounded-tl-none'
+                        }`}
                     >
                       {/* Image */}
                       {message.image && (
