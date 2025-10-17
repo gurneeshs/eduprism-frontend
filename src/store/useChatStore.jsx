@@ -6,6 +6,7 @@ import { useAuthStore } from './useAuthStore';
 
 export const useChatStore = create((set, get) => ({
     messages: [],
+    groupMessages:[],
     users: [],
     students: [],
     teachers: [],
@@ -106,7 +107,7 @@ export const useChatStore = create((set, get) => ({
         set({ isMessagesLoading: true });
         try {
             const res = await axiosInstance.get(`/groups/${groupId}/messages`);
-            set({ messages: res.data });
+            set({ groupMessages: res.data });
         } catch (err) {
             toast.error("Error in getting Group Message");
             console.log(err);
@@ -132,11 +133,11 @@ export const useChatStore = create((set, get) => ({
 
     sendGroupMessage: async (messagedata) => {
         set({ isSendingGroupMessage: true })
-        const { messages, selectedGroup } = get();
+        const { groupMessages, selectedGroup } = get();
         try {
             // console.log(messagedata);
             const res = await axiosInstance.post(`/groups/${selectedGroup._id}/messages`, messagedata);
-            set({ messages: [...messages, res.data] });
+            set({ groupMessages: [...groupMessages, res.data] });
         } catch (error) {
             toast.error("Error in Sending Group Message ");
             console.log(error);
@@ -183,7 +184,7 @@ export const useChatStore = create((set, get) => ({
 
         socket.on("newGroupMessage", (newMessage) => {
             set({
-                messages: [...get().messages, newMessage],
+                groupMessages: [...get().groupMessages, newMessage],
             });
             // if (newMessage.senderId !== authUser._id) {
             //     const audio = new Audio("/notify-sound/notify1.mp3");

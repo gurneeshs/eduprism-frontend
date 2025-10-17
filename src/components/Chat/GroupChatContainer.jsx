@@ -13,7 +13,8 @@ dayjs.extend(calendar);
 
 const GroupChatContainer = () => {
     const {
-        messages,
+        // messages,
+        groupMessages,
         getGroupMessages,
         isMessagesLoading,
         selectedGroup,
@@ -44,10 +45,10 @@ const GroupChatContainer = () => {
 
     // Auto-scroll to latest message
     useEffect(() => {
-        if (messageEndRef.current && messages) {
+        if (messageEndRef.current && groupMessages) {
             messageEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-    }, [messages]);
+    }, [groupMessages]);
 
     const formatMessageTime = (date) =>
         new Intl.DateTimeFormat("en-US", {
@@ -63,7 +64,7 @@ const GroupChatContainer = () => {
             return acc;
         }, {});
     };
-    const groupedMessages = groupMessagesByDate(messages || []);
+    const groupedMessages = groupMessagesByDate(groupMessages || []);
 
     if (isMessagesLoading)
         return (
@@ -87,7 +88,7 @@ const GroupChatContainer = () => {
 
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                {messages.length === 0 ? (
+                {groupMessages.length === 0 ? (
                     <p className="text-center text-gray-500 mt-10">
                         No messages yet. Start the conversation!
                     </p>
@@ -119,7 +120,7 @@ const GroupChatContainer = () => {
                                 <div className="w-10 h-10 rounded-full border overflow-hidden">
                                     <img
                                         src={
-                                            message.senderId.profilePic ||
+                                            message.senderProfilePic ||
                                             (isOwnMessage ? authUser.profilePic : "/avatar.png")
                                         }
                                         alt={message.senderName}

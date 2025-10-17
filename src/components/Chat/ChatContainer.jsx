@@ -17,8 +17,6 @@ const ChatContainer = () => {
     subscribeToMessages,
     subscribeToGroupMessages,
     selectedGroup,
-    unsubscribeFromGroupMessages,
-    getGroupMessages,
     unsubscribeFromMessages,
     isChatOpen,
   } = useChatStore();
@@ -30,9 +28,6 @@ const ChatContainer = () => {
   useEffect(() => {
     subscribeToMessages();
   }, [subscribeToMessages]);
-  useEffect(() => {
-    subscribeToGroupMessages();
-  }, [subscribeToGroupMessages]);
 
   // fetch messages on user change
   useEffect(() => {
@@ -40,12 +35,6 @@ const ChatContainer = () => {
     // console.log(messages.length)
     return () => unsubscribeFromMessages();
   }, [selectedUser?._id, getMessages, unsubscribeFromMessages]);
-
-  useEffect(() => {
-    if (selectedGroup?._id) getGroupMessages(selectedGroup._id);
-    // console.log(messages.length)
-    return () => unsubscribeFromGroupMessages();
-  }, [selectedGroup?._id, getGroupMessages, unsubscribeFromGroupMessages]);
 
   // auto scroll to bottom on new messages
   useEffect(() => {

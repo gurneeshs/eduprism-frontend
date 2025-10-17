@@ -140,14 +140,14 @@ const ChatSidebar = () => {
                                 <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
                                     {/* Date / Time Display */}
                                     {user.lastMessageAt && (
-                                        <div className="text-xs text-gray-500 font-medium">
+                                        <div className={`text-xs  ${user.unreadCount >0 ? 'text-blue-500':'text-gray-500'} font-medium`}>
                                             {formatChatTime(user.lastMessageAt)}
                                         </div>
                                     )}
 
                                     {/* Unread Badge */}
                                     {user.unreadCount > 0 && (
-                                        <div className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
+                                        <div className="bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
                                             {user.unreadCount}
                                         </div>
                                     )}
@@ -203,14 +203,14 @@ const ChatSidebar = () => {
                                     <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
                                         {/* Date / Time Display */}
                                         {user.lastMessageAt && (
-                                            <div className="text-xs text-gray-500 font-medium">
+                                            <div className={`text-xs  ${user.unreadCount>0 ? 'text-blue-500':'text-gray-500'} font-medium`}>
                                                 {formatChatTime(user.lastMessageAt)}
                                             </div>
                                         )}
 
                                         {/* Unread Badge */}
                                         {user.unreadCount > 0 && (
-                                            <div className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
+                                            <div className="bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
                                                 {user.unreadCount}
                                             </div>
                                         )}
@@ -261,14 +261,14 @@ const ChatSidebar = () => {
                                     <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
                                         {/* Date / Time Display */}
                                         {group.lastMessageAt && (
-                                            <div className="text-xs text-gray-500 font-medium">
+                                            <div className={`text-xs  ${group.unreadCount>0 ? 'text-blue-500':'text-gray-500'} font-medium`}>
                                                 {formatChatTime(group.lastMessageAt)}
                                             </div>
                                         )}
 
                                         {/* Unread Badge */}
                                         {group.unreadCount > 0 && (
-                                            <div className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
+                                            <div className="bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full min-w-[22px] text-center">
                                                 {group.unreadCount}
                                             </div>
                                         )}
