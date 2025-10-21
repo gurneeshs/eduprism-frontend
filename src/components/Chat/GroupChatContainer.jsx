@@ -22,6 +22,7 @@ const GroupChatContainer = () => {
         unsubscribeFromGroupMessages,
         isChatOpen
     } = useChatStore();
+    // console.log(selectedGroup)
 
     const { authUser } = useAuthStore();
     const messageEndRef = useRef(null);

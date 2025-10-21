@@ -24,7 +24,7 @@ const ChatHomePage = () => {
     <div>
         <ChatNavbar />
         <div className='flex items-center justify-center'>
-            <div className='rounded-lg shadow-cl w-full h-[calc(88vh)]'>
+            <div className='rounded-lg shadow-cl w-full h-[calc(89vh)]'>
                 <div className='flex h-full rounded-lg overflow-hidden relative'>
                     <ChatSidebar />
 
