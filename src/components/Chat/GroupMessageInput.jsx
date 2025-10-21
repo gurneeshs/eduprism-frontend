@@ -12,7 +12,7 @@ const GroupMessageInput = () => {
   const { authUser, socket } = useAuthStore();
   // console.log(authUser);
   const { sendGroupMessage, isSendingGroupMessage, selectedGroup } = useChatStore();
-  console.log(selectedGroup)
+  // console.log(selectedGroup)
   const [isChatAllowed, setIsChatAllowed] = useState(selectedGroup.isChatAllowed ?? true);
 
 

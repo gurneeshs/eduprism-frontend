@@ -12,8 +12,10 @@ import axios from "axios";
 import { useAuthStore } from "../../store/useAuthStore";
 import { axiosInstance } from "../../lib/axios";
 import toast from "react-hot-toast";
+import { useChatStore } from "../../store/useChatStore";
 
 const GroupInfo = ({ group, onClose }) => {
+    const {setSelectedGroup} = useChatStore()
     const [isChatAllowed, setIsChatAllowed] = useState(group.isChatAllowed ?? true);
     const [showAddMemberModal, setShowAddMemberModal] = useState(false);
     const [allUsers, setAllUsers] = useState([]);
@@ -31,6 +33,7 @@ const GroupInfo = ({ group, onClose }) => {
     const { authUser } = useAuthStore();
     const [members, setMembers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [deleting,setDeleting] = useState(false);
     const isAdmin = authUser?._id === group.admin;
     const [isToggleing, setIsToggleing] = useState(false);
 
@@ -71,8 +74,6 @@ const GroupInfo = ({ group, onClose }) => {
         }
     };
 
-
-
     const handleRemoveStudent = async (id) => {
         if (!confirm("Remove this member?")) return;
         try {
@@ -87,13 +88,17 @@ const GroupInfo = ({ group, onClose }) => {
     };
 
     const handleDeleteGroup = async () => {
+        setDeleting(true);
         if (!confirm("Are you sure you want to delete this group?")) return;
         try {
-            await axiosInstance.delete(`/api/groups/${group._id}`);
+            await axiosInstance.delete(`/groups/${group._id}`);
             toast.success("Group deleted!");
             onClose();
+            setSelectedGroup(null)
         } catch {
             toast.error("Error deleting group");
+        } finally{
+            setDeleting(false)
         }
     };
 
@@ -233,10 +238,10 @@ const GroupInfo = ({ group, onClose }) => {
 
                             <button
                                 onClick={handleDeleteGroup}
-                                disabled={loading}
+                                disabled={deleting}
                                 className="flex items-center gap-2 justify-center bg-red-500 hover:bg-red-600 text-white py-2 rounded-md"
                             >
-                                <Trash2 size={18} /> Delete Group
+                                <Trash2 size={18} /> {deleting ? "Deleting Group...":"Delete Group"} 
                             </button>
                         </div>
                     )}
