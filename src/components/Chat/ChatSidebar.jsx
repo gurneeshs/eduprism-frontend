@@ -30,7 +30,7 @@ const ChatSidebar = () => {
 
     useEffect(() => {
         // getUsers(),
-            getGroups()
+        getGroups()
     }, [getGroups])
 
     useEffect(() => {
@@ -39,12 +39,6 @@ const ChatSidebar = () => {
     useEffect(() => {
         getTeachers()
     }, [getTeachers])
-
-    const formatMessageTime = (date) =>
-        new Intl.DateTimeFormat('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-        }).format(new Date(date));
 
     function formatChatTime(dateString) {
         const date = new Date(dateString);
@@ -140,7 +134,7 @@ const ChatSidebar = () => {
                                 <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
                                     {/* Date / Time Display */}
                                     {user.lastMessageAt && (
-                                        <div className={`text-xs  ${user.unreadCount >0 ? 'text-blue-500':'text-gray-500'} font-medium`}>
+                                        <div className={`text-xs  ${user.unreadCount > 0 ? 'text-blue-500' : 'text-gray-500'} font-medium`}>
                                             {formatChatTime(user.lastMessageAt)}
                                         </div>
                                     )}
@@ -203,7 +197,7 @@ const ChatSidebar = () => {
                                     <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
                                         {/* Date / Time Display */}
                                         {user.lastMessageAt && (
-                                            <div className={`text-xs  ${user.unreadCount>0 ? 'text-blue-500':'text-gray-500'} font-medium`}>
+                                            <div className={`text-xs  ${user.unreadCount > 0 ? 'text-blue-500' : 'text-gray-500'} font-medium`}>
                                                 {formatChatTime(user.lastMessageAt)}
                                             </div>
                                         )}
@@ -261,7 +255,7 @@ const ChatSidebar = () => {
                                     <div className="flex flex-col items-end gap-1 min-w-[60px] text-right">
                                         {/* Date / Time Display */}
                                         {group.lastMessageAt && (
-                                            <div className={`text-xs  ${group.unreadCount>0 ? 'text-blue-500':'text-gray-500'} font-medium`}>
+                                            <div className={`text-xs  ${group.unreadCount > 0 ? 'text-blue-500' : 'text-gray-500'} font-medium`}>
                                                 {formatChatTime(group.lastMessageAt)}
                                             </div>
                                         )}

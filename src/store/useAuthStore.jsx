@@ -55,7 +55,7 @@ export const useAuthStore = create((set, get) => ({
         }
         toast.success("Account created successfully");
         await get().connectSocket();
-        navigate("/Chat");
+        navigate("/Chat", { replace: true });
       }
       else {
         toast.error("Failed to SignUp User");
@@ -85,7 +85,7 @@ export const useAuthStore = create((set, get) => ({
       }
       toast.success("Logged in successfully");
       get().connectSocket();
-      navigate("/Chat");
+      navigate("/Chat", { replace: true });
     } catch (error) {
       toast.error("Error in login");
     } finally {

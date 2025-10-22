@@ -6,12 +6,13 @@ import { useAuthStore } from './useAuthStore';
 
 export const useChatStore = create((set, get) => ({
     messages: [],
-    groupMessages:[],
+    groupMessages: [],
     users: [],
     students: [],
     teachers: [],
     groups: [],
     selectedGroup: null,
+    firstUnreadMessageId: null,
     selectedUser: null,
     isUsersLoading: false,
     isStudentLoading: false,
@@ -95,7 +96,9 @@ export const useChatStore = create((set, get) => ({
         set({ isMessagesLoading: true });
         try {
             const res = await axiosInstance.get(`/messages/${userId}`);
-            set({ messages: res.data });
+            console.log(res.data);
+            set({ messages: res.data.messages });
+            set({ firstUnreadMessageId: res.data.firstUnreadMessage });
         } catch (error) {
             toast.error("Error in Getting Messages: ");
             console.log(error);
@@ -122,6 +125,8 @@ export const useChatStore = create((set, get) => ({
         const { selectedUser, messages } = get();
         try {
             const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
+            set({ firstUnreadMessageId: null });
+
             set({ messages: [...messages, res.data] });
         } catch (error) {
             toast.error("Error in Sending Messages ");
@@ -162,6 +167,7 @@ export const useChatStore = create((set, get) => ({
             set({
                 messages: [...get().messages, newMessage],
             });
+            set({ firstUnreadMessageId: null });
             // if (newMessage.senderId !== authUser._id) {
             //     const audio = new Audio("/notify-sound/notify1.mp3");
             //     audio.play().catch((err) => console.log("Sound play blocked:", err));
@@ -172,6 +178,8 @@ export const useChatStore = create((set, get) => ({
 
     unsubscribeFromMessages: () => {
         const socket = useAuthStore.getState().socket;
+        set({ firstUnreadMessageId: null });
+
         socket.off("newMessage");
     },
 
@@ -237,13 +245,13 @@ export const useChatStore = create((set, get) => ({
             // Case 1: Deselect (null)
             if (selectedGroup == null) {
                 socket.emit("inactiveGroupChat", { groupId: currentSelectedGroup?._id, userId: authUser._id });
-                return { selectedGroup: null};
+                return { selectedGroup: null };
             }
 
             // Case 2: Selecting a new group
             if (currentSelectedGroup?._id !== selectedGroup?._id) {
                 socket.emit("activeGroupChat", { groupId: selectedGroup._id, userId: authUser._id });
-                return { selectedGroup};
+                return { selectedGroup };
             }
 
             // Case 3: Clicking same group again → do nothing
