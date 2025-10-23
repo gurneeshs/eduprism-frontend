@@ -15,6 +15,7 @@ const GroupChatContainer = () => {
     const {
         // messages,
         groupMessages,
+        firstUnreadGroupMessageId,
         getGroupMessages,
         isMessagesLoading,
         selectedGroup,
@@ -27,29 +28,44 @@ const GroupChatContainer = () => {
     const { authUser } = useAuthStore();
     const messageEndRef = useRef(null);
 
-    useEffect(() => {
-        subscribeToGroupMessages();
-    }, [subscribeToGroupMessages])
+    // useEffect(() => {
+    //     subscribeToGroupMessages();
+    // }, [subscribeToGroupMessages])
 
     // Fetch messages and subscribe on mount
     useEffect(() => {
         if (!selectedGroup?._id) return;
 
         getGroupMessages(selectedGroup._id);
+
+        subscribeToGroupMessages();
         return () => unsubscribeFromGroupMessages(selectedGroup._id);
     }, [
         selectedGroup?._id,
         getGroupMessages,
-        // subscribeToGroupMessages,
+        subscribeToGroupMessages,
         unsubscribeFromGroupMessages,
     ]);
 
     // Auto-scroll to latest message
     useEffect(() => {
+        if (firstUnreadGroupMessageId) {
+            console.log("yes first unread message")
+            const unreadElement = document.getElementById(firstUnreadGroupMessageId);
+
+            if (unreadElement) {
+                console.log("found unread element")
+                unreadElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+                return;
+            }
+        }
         if (messageEndRef.current && groupMessages) {
             messageEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-    }, [groupMessages]);
+    }, [groupMessages, firstUnreadGroupMessageId]);
 
     const formatMessageTime = (date) =>
         new Intl.DateTimeFormat("en-US", {
@@ -106,72 +122,82 @@ const GroupChatContainer = () => {
                                     })}
                                 </span>
                             </div>
-                    {groupedMessages[date].map((message) => {
-                            const isOwnMessage = message.senderId == authUser._id;
-                            {/* console.log(message.senderId._id, " ", authUser._id) */}
+                            {groupedMessages[date].map((message) => {
+                                const isOwnMessage = message.senderId == authUser._id;
+                                {/* console.log(message.senderId._id, " ", authUser._id) */ }
 
-                            return (
-                            <div
-                                key={message._id}
-                                ref={messageEndRef}
-                                className={`flex my-2 items-start gap-3 ${isOwnMessage ? "flex-row-reverse" : "flex-row"
-                                    }`}
-                            >
-                                {/* Avatar */}
-                                <div className="w-10 h-10 rounded-full border overflow-hidden">
-                                    <img
-                                        src={
-                                            message.senderProfilePic ||
-                                            (isOwnMessage ? authUser.profilePic : "/avatar.png")
-                                        }
-                                        alt={message.senderName}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-
-                                {/* Message Content */}
-                                <div
-                                    className={`flex flex-col ${isOwnMessage ? "items-end" : "items-start"
-                                        } gap-1`}
-                                >
-                                    {/* Sender name (only show if not your own message) */}
-                                    {/* Message Metadata (Sender Name + Time) */}
-
-                                    {/* Message Bubble */}
-                                    <div
-                                        className={`rounded-2xl p-3 max-w-xs break-words shadow-sm ${isOwnMessage
-                                            ? "bg-blue-500 text-gray-50 rounded-tr-none"
-                                            : "bg-lightgreen-500 text-gray-50 rounded-tl-none"
-                                            }`}
-                                    >
-                                        <div className="text-xs">
-                                            {!isOwnMessage ? (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-semibold">{message.senderName}</span>
+                                return (
+                                    <>
+                                        <div>
+                                            {firstUnreadGroupMessageId === message._id && (
+                                                <div className="flex justify-center my-3">
+                                                    <span className="bg-blue-500 text-white text-sm px-3 py-1 rounded-full">  New Messages  </span>
                                                 </div>
-                                            ) : (
-                                                ""
                                             )}
                                         </div>
+                                        <div
+                                            key={message._id}
+                                            id={message._id}
+                                            ref={messageEndRef}
+                                            className={`flex my-2 items-start gap-3 ${isOwnMessage ? "flex-row-reverse" : "flex-row"
+                                                }`}
+                                        >
+                                            {/* Avatar */}
+                                            <div className="w-10 h-10 rounded-full border overflow-hidden">
+                                                <img
+                                                    src={
+                                                        message.senderProfilePic ||
+                                                        (isOwnMessage ? authUser.profilePic : "/avatar.png")
+                                                    }
+                                                    alt={message.senderName}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
 
-                                        {message.image && (
-                                            <img
-                                                src={message.image}
-                                                alt="Attachment"
-                                                className="max-w-[200px] rounded-md mb-2"
-                                            />
-                                        )}
-                                        {message.text && <p className=" text-left">{message.text}</p>}
-                                        <div className="flex items-center">
-                                            <time className="w-full text-xs text-right">{formatMessageTime(message.createdAt)}</time>
+                                            {/* Message Content */}
+                                            <div
+                                                className={`flex flex-col ${isOwnMessage ? "items-end" : "items-start"
+                                                    } gap-1`}
+                                            >
+                                                {/* Sender name (only show if not your own message) */}
+                                                {/* Message Metadata (Sender Name + Time) */}
 
+                                                {/* Message Bubble */}
+                                                <div
+                                                    className={`rounded-2xl p-3 max-w-xs break-words shadow-sm ${isOwnMessage
+                                                        ? "bg-blue-500 text-gray-50 rounded-tr-none"
+                                                        : "bg-lightgreen-500 text-gray-50 rounded-tl-none"
+                                                        }`}
+                                                >
+                                                    <div className="text-xs">
+                                                        {!isOwnMessage ? (
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="font-semibold">{message.senderName}</span>
+                                                            </div>
+                                                        ) : (
+                                                            ""
+                                                        )}
+                                                    </div>
+
+                                                    {message.image && (
+                                                        <img
+                                                            src={message.image}
+                                                            alt="Attachment"
+                                                            className="max-w-[200px] rounded-md mb-2"
+                                                        />
+                                                    )}
+                                                    {message.text && <p className=" text-left">{message.text}</p>}
+                                                    <div className="flex items-center">
+                                                        <time className="w-full text-xs text-right">{formatMessageTime(message.createdAt)}</time>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            );
-                        })}
+                                    </>
+                                );
+                            })}
 
                         </div>
 

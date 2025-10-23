@@ -13,6 +13,7 @@ export const useChatStore = create((set, get) => ({
     groups: [],
     selectedGroup: null,
     firstUnreadMessageId: null,
+    firstUnreadGroupMessageId: null,
     selectedUser: null,
     isUsersLoading: false,
     isStudentLoading: false,
@@ -26,23 +27,7 @@ export const useChatStore = create((set, get) => ({
     openChat: () => set({ isChatOpen: true }),
     closeChat: () => set({ isChatOpen: false }),
 
-    incrementUnreadCount: (userId, amount = 1) =>
-        set((state) => ({
-            unreadCounts: {
-                ...state.unreadCounts,
-                [userId]: (state.unreadCounts[userId] || 0) + amount,
-            },
-        })),
-
-    // reset unread count for a user (set to 0)
-    resetUnreadCount: (userId) =>
-        set((state) => ({
-            unreadCounts: {
-                ...state.unreadCounts,
-                [userId]: 0,
-            },
-        })),
-
+    
     getUsers: async () => {
         set({ isUsersLoading: true });
         try {
@@ -110,7 +95,8 @@ export const useChatStore = create((set, get) => ({
         set({ isMessagesLoading: true });
         try {
             const res = await axiosInstance.get(`/groups/${groupId}/messages`);
-            set({ groupMessages: res.data });
+            set({ groupMessages: res.data.messages });
+            set({ firstUnreadGroupMessageId: res.data.firstUnreadMessage });
         } catch (err) {
             toast.error("Error in getting Group Message");
             console.log(err);
@@ -142,6 +128,7 @@ export const useChatStore = create((set, get) => ({
         try {
             // console.log(messagedata);
             const res = await axiosInstance.post(`/groups/${selectedGroup._id}/messages`, messagedata);
+            set({ firstUnreadGroupMessageId: null });
             set({ groupMessages: [...groupMessages, res.data] });
         } catch (error) {
             toast.error("Error in Sending Group Message ");
@@ -191,9 +178,13 @@ export const useChatStore = create((set, get) => ({
         // socket.off("newGroupMessage");
 
         socket.on("newGroupMessage", (newMessage) => {
+            const isMessageForSelectedGroup = newMessage.groupId === selectedGroup._id;
+
+            if (!isMessageForSelectedGroup) return;
             set({
                 groupMessages: [...get().groupMessages, newMessage],
             });
+            set({ firstUnreadGroupMessageId: null });
             // if (newMessage.senderId !== authUser._id) {
             //     const audio = new Audio("/notify-sound/notify1.mp3");
             //     audio.play().catch((err) => console.log("Sound play blocked:", err));
