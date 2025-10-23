@@ -10,7 +10,7 @@ dayjs.extend(calendar);
 const ChatSidebar = () => {
     const { users, getUsers, getStudents, students, getTeachers, teachers, isStudentLoading, isTeacherLoading, selectedUser, setSelectedUser, isUsersLoading, groups, selectedGroup, isGroupLoading, setSelectedGroup, getGroups, isChatOpen, openChat, closeChat } = useChatStore();
     const { onlineUsers, authUser, tabs } = useAuthStore();
-    // console.log(students)
+    console.log(groups)
     const [activeTab, setActiveTab] = useState(tabs[0]);
     // console.log(tabs[0])
 

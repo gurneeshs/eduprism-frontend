@@ -241,6 +241,7 @@ export const useChatStore = create((set, get) => ({
 
             // Case 2: Selecting a new group
             if (currentSelectedGroup?._id !== selectedGroup?._id) {
+                socket.emit("inactiveGroupChat", { groupId: currentSelectedGroup?._id, userId: authUser._id });
                 socket.emit("activeGroupChat", { groupId: selectedGroup._id, userId: authUser._id });
                 return { selectedGroup };
             }
