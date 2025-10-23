@@ -140,8 +140,6 @@ export const useAuthStore = create((set, get) => ({
       set({ onlineUsers: userIds });
     });
     socket.off("newGroupMessageSnd");
-    socket.off("newMessageSnd");
-    socket.off("newMessageSnd1");
     socket.on("newGroupMessageSnd", (newMessage) => {
       const chatStore = useChatStore.getState();
         chatStore.getGroups()
@@ -152,12 +150,16 @@ export const useAuthStore = create((set, get) => ({
         audio.play().catch((err) => console.log("Sound play blocked:", err));
       }
     });
+    
+    socket.off("newMessageSnd1");
     socket.on("newMessageSnd1", ()=>{
       const chatStore = useChatStore.getState();
       // const selectedUser = chatStore.selectedUser;
       chatStore.getStudents()
       chatStore.getTeachers()
     })
+
+    socket.off("newMessageSnd");
     socket.on("newMessageSnd", (newMessage) => {
       const chatStore = useChatStore.getState();
       const selectedUser = chatStore.selectedUser;
@@ -171,6 +173,18 @@ export const useAuthStore = create((set, get) => ({
       }
     });
 
+    socket.off("newGroupCreated");
+    socket.on("newGroupCreated", (newGroup) => {
+      const chatStore = useChatStore.getState();
+      chatStore.getGroups()
+      toast.success(`You have been added to a new group: ${newGroup.name}`);
+    });
+
+    socket.off("groupDeleted")
+    socket.on("groupDeleted", (deletedGroupId) => {   
+      const chatStore = useChatStore.getState();
+      chatStore.getGroups()
+    });
 
   },
   disconnectSocket: () => {
