@@ -43,10 +43,10 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat">
       <div className="text-center max-w-3xl mx-auto mb-12">
         <p className="text-lg md:text-2xl text-blue-700 font-semibold uppercase">FAQ</p>
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2">
           Frequently Asked Questions
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mt-4">
@@ -69,7 +69,7 @@ export default function FAQ() {
               className="flex justify-between items-center bg-gray-50 dark:bg-gray-900 px-6 py-4 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors duration-300"
               onClick={() => toggleIndex(index)}
             >
-              <h3 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-200">
+              <h3 className="text-md md:text-lg font-semibold text-gray-800 dark:text-gray-200">
                 {faq.question}
               </h3>
               <motion.div

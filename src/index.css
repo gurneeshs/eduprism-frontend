@@ -135,10 +135,12 @@ html {
 /* keep body as stacking context */
 body {
   position: relative;
+  
   /* important */
   z-index: 0;
   /* ensures pseudo stays behind content but above page background */
-  background-color: #f4f4df84;
+  /* background-color: #07070684; */
+  /* background-image: url('/public/background/background.png'); */
 }
 
 .dark body {

@@ -45,12 +45,12 @@ export default function ContactCreative() {
     }
 
     return (
-        <section id="contact" className="py-20 px-4 md:px-8 lg:px-12 ">
+        <section id="contact" className="py-20 px-6 md:px-12 lg:px-20 bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat ">
             <div className="max-w-7xl mx-auto">
-                <p className=" text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold text-center">
+                <p className=" text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold text-center">
                     Get in Touch
                 </p>
-                <h2 className="text-3xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-200 text-center mt-2">
+                <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800 dark:text-gray-200 text-center mt-2">
                     Contact & Enrollment
                 </h2>
                 <p className="text-center text-gray-600 dark:text-gray-300 mt-3 max-w-2xl mx-auto">

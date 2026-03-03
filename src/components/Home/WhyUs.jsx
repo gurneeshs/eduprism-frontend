@@ -42,14 +42,14 @@ const cards = [
 
 const WhyUs = () => {
   return (
-    <section className="py-16 px-6 px-2">
+    <section className="py-16 px-20 bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat ">
       {/* Small Heading */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-md md:text-xl text-blue-700 font-semibold text-center"
+        className="text-sm md:text-lg text-blue-700 font-semibold text-center"
       >
         WHY CHOOSE EDUPRISM?
       </motion.p>
@@ -60,7 +60,7 @@ const WhyUs = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-100 text-center mt-2"
+        className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-center mt-2"
       >
         Our Unique Approach
       </motion.h2>
@@ -78,8 +78,8 @@ const WhyUs = () => {
             className="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-md hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer text-left"
           >
             <div className="mb-4">{card.icon}</div>
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">{card.title}</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-md">{card.description}</p>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{card.title}</h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">{card.description}</p>
           </motion.div>
         ))}
       </div>

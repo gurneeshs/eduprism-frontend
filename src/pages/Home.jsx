@@ -13,6 +13,7 @@ import Contact from '../components/Contact/Contact'
 import ContactCreative from '../components/Contact/ContactCreative'
 import FAQ from '../components/FAQ/FAQ'
 import Team from '../components/Team/Team'
+import Objection from '../components/Objection/Objection'
 
 const Home = () => {
   return (
@@ -43,6 +44,10 @@ const Home = () => {
         <section id="team">
           {/* <Team /> */}
           <Team />
+        </section>
+
+        <section id="objection">
+          <Objection />
         </section>
 
         <section id="contact">

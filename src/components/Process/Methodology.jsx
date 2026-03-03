@@ -37,12 +37,12 @@ const principles = [
 
 export default function Methodology() {
     return (
-        <section className="py-20 px-4 md:px-8 lg:px-16 text-center">
+        <section className="py-20 px-4 md:px-10 lg:px-20 text-center bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat">
             {/* Headings */}
-            <p className="text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold">
+            <p className="text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold">
                 THE PRISM METHODOLOGY
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2">
                 Built on Five Core Principles
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">
@@ -78,8 +78,8 @@ export default function Methodology() {
                         </div>
                         </div>
 
-                        <h3 className="text-2xl font-bold text-gray-800 text-left sm:text-center w-full">{p.title}</h3>
-                        <p className="text-gray-600 text-lg text-left sm:text-center mt-2">{p.desc}</p>
+                        <h3 className="text-xl font-bold text-gray-800 text-left sm:text-center w-full">{p.title}</h3>
+                        <p className="text-gray-600 text-md text-left sm:text-center mt-2">{p.desc}</p>
                     </motion.div>
                 ))}
             </div>

@@ -57,12 +57,12 @@ const secondRowCards = [
 
 export default function Platforms() {
     return (
-        <section className="py-20 px-4 md:px-8 lg:px-16">
+        <section className="py-20 px-4 md:px-10 lg:px-20 bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat">
             {/* Headings */}
-            <p className="text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold text-center">
+            <p className="text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold text-center">
                 Our Platforms
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2 text-center">
                 Platforms That Drive Success
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto text-center">
@@ -92,15 +92,15 @@ export default function Platforms() {
                         </div>
 
                         {/* Text Content */}
-                        <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200">{card.title}</h3>
-                        <p className="text-gray-600 dark:text-gray-400 text-xl mt-2">{card.desc}</p>
+                        <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{card.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-400 text-md mt-2">{card.desc}</p>
 
                         {/* Tags */}
                         <div className="flex gap-3 mt-4">
                             {card.tags.map((tag, idx) => (
                                 <span
                                     key={idx}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium ${card.tagColors[idx]} transition-all duration-300 hover:scale-110 hover:shadow-md`}
+                                    className={`px-3 py-2 rounded-full text-sm font-medium ${card.tagColors[idx]} transition-all duration-300 hover:scale-110 hover:shadow-md`}
                                 >
                                     {tag}
                                 </span>

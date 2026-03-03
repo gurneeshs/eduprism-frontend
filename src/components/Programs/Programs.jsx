@@ -117,14 +117,14 @@ const Dropdown = ({ title, content, color }) => {
 };
 export default function Programs() {
     return (
-        <section className="py-16 px-2 mx-auto">
+        <section className="py-16 px-20  mx-auto bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat ">
             {/* Small Heading */}
-            <p className="text-md md:text-xl text-blue-700 font-semibold  uppercase tracking-wide text-center">
+            <p className="text-sm md:text-lg text-blue-700 font-semibold  uppercase tracking-wide text-center">
                 Our Programs
             </p>
 
             {/* Large Heading */}
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-100 mt-2 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mt-2 text-center">
                 Explore What We Offer
             </h2>
 
@@ -148,17 +148,17 @@ export default function Programs() {
                     >
                         {/* Header with Icon */}
                         <div className="flex items-center gap-3 mb-4">
-                            <div className={`h-10 w-10 flex items-center justify-center ${cardBgColors[index]} rounded-full `}>
+                            <div className={`h-8 w-8 flex items-center justify-center ${cardBgColors[index]} rounded-full `}>
                                 {card.icon}
                             </div>
-                            <h3 className={`text-3xl font-bold ${cardTextColors[index]}`}>{card.title}</h3>
+                            <h3 className={`text-2xl font-bold ${cardTextColors[index]}`}>{card.title}</h3>
                         </div>
 
                         {/* Description */}
-                        <p className="text-gray-600 dark:text-gray-300 text-xl text-left mb-4">{card.description}</p>
+                        <p className="text-gray-600 dark:text-gray-300 text-md text-left mb-4">{card.description}</p>
 
                         {/* Program Includes */}
-                        <h4 className="text-2xl text-left font-bold text-gray-700 dark:text-gray-200 mb-2">
+                        <h4 className="text-xl text-left font-bold text-gray-700 dark:text-gray-200 mb-2">
                             Program Includes:
                         </h4>
                         <div className="space-y-2">

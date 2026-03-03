@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: "Process", link: "process", type: "scroll" },
     { name: "Testimonial", link: "testimonial", type: "scroll" },
     { name: "Meet our Team", link: "team", type: "scroll" },
+    { name: "Parent's Concern", link: "objection", type: "scroll" },
     { name: "Contact", link: "contact", type: "scroll" },
     { name: "Login", link: "/login", type: "route" }, // 👈 Route link with DomLink
     { name:"Signup", link:"/signup", type:"route"}

@@ -15,19 +15,19 @@ const stats = [
   {
     label: "Teaching Hours",
     value: 10000,
-    color: "bg-yellow-100 text-yellow-700 border-yellow-700",
+    color: "bg-orange-50 text-orange-500 border-orange-500",
   },
 ];
 
 export default function Impact() {
   return (
-    <section className="py-16 px-4 text-center">
+    <section className="py-16 px-20 text-center bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat ">
       {/* Small Heading */}
       <motion.h4
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-md md:text-xl font-semibold tracking-widest text-blue-700 uppercase"
+        className="text-sm md:text-lg font-semibold tracking-widest text-blue-700 uppercase"
       >
         Our Impact
       </motion.h4>
@@ -37,7 +37,7 @@ export default function Impact() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2"
+        className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2"
       >
         Expert Educators. Proven Impact. <br></br>Trusted by Hundreds of Families.
       </motion.h2>
@@ -52,7 +52,7 @@ export default function Impact() {
             transition={{ duration: 0.6, delay: index * 0.2 }}
             className={`rounded-xl border-2 p-6 shadow-md ${stat.color}`}
           >
-            <h3 className="text-4xl md:text-5xl font-extrabold">
+            <h3 className="text-3xl md:text-4xl font-extrabold">
               <CountUp end={stat.value} duration={2} separator="," enableScrollSpy />
               {(stat.label === "Years" || stat.label === "Teaching Hours") && "+"}
             </h3>

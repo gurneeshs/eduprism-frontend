@@ -45,10 +45,10 @@ export default function Team() {
     }
 
     return (
-        <section className="py-16 relative">
+        <section className="py-16 px-20 relative bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat">
             <div className="text-center max-w-3xl mx-auto mb-12">
-                <p className="text-md md:text-xl text-blue-700 font-semibold uppercase">Meet our team</p>
-                <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2">
+                <p className="text-sm md:text-lg text-blue-700 font-semibold uppercase">Meet our team</p>
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2">
                     Our Expert Educators
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mt-4">
@@ -92,7 +92,7 @@ export default function Team() {
                                 <div className="flex flex-col text-left">
                                     {/* Name */}
                                     <motion.h3
-                                        className="text-3xl font-bold text-gray-800 dark:text-gray-200"
+                                        className="text-2xl font-bold text-gray-800 dark:text-gray-200"
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: false, amount: 0.5 }}
@@ -103,7 +103,7 @@ export default function Team() {
 
                                     {/* Position */}
                                     <motion.p
-                                        className={`${colors[i%3]} text-xl font-bold mt-1`}
+                                        className={`${colors[i%3]} text-lg font-bold mt-1`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: false, amount: 0.5 }}
@@ -114,7 +114,7 @@ export default function Team() {
 
                                     {/* Description */}
                                     <motion.div
-                                        className="text-gray-600 dark:text-gray-300 text-2xl mt-2"
+                                        className="text-gray-600 dark:text-gray-300 text-md mt-2"
                                         initial="hidden"
                                         whileInView="visible"
                                         viewport={{ once: false, amount: 0.5 }}

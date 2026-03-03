@@ -32,9 +32,9 @@ export default function Process() {
     });
 
     return (
-        <section ref={ref} id="process" className="py-16 relative">
+        <section ref={ref} id="process" className="py-16 relative bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat">
             {/* Main Heading */}
-            <h2 className="text-center text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-16">
+            <h2 className="text-center text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-16">
                 Your 5-Steps Pathway to Success
             </h2>
 
@@ -64,10 +64,10 @@ export default function Process() {
                                 className={`w-1/2 px-6 ${index % 2 === 0 ? "text-right pr-12" : "ml-auto text-left pl-12"
                                     }`}
                             >
-                                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-300 ">
+                                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-300 ">
                                     {step.title}
                                 </h3>
-                                <p className="mt-2 text-gray-600 dark:text-gray-400 text-lg">{step.desc}</p>
+                                <p className="mt-2 text-gray-600 dark:text-gray-400 text-md">{step.desc}</p>
                             </div>
 
                             {/* Number dot fixed at center line */}

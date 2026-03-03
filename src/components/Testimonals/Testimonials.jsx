@@ -31,12 +31,12 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonial" className="py-20 px-4 md:px-4 lg:px-8">
+    <section id="testimonial" className="py-20 px-4 md:px-10 lg:px-20 bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat">
       {/* Headings */}
-      <p className="text-md md:text-xl uppercase tracking-wider text-blue-700 font-semibold text-center">
+      <p className="text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold text-center">
         STUDENT ACHIEVEMENTS
       </p>
-      <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mt-2 text-center">
+      <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2 text-center">
         What Our Clients Say
       </h2>
 

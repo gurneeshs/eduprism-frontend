@@ -6,9 +6,9 @@ import { BookOpen, Users, Award, Clock } from "lucide-react";
 export default function About() {
     return (
 
-        <section className="py-16">
+        <section className="py-16 bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat ">
 
-            <div className="mx-auto px-8 pt-10">
+            <div className="mx-auto px-20 pt-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     {/* Left Side Content */}
                     <motion.div
@@ -18,10 +18,10 @@ export default function About() {
                         viewport={{ once: true }}
                         className="space-y-6 lg:text-left"
                     >
-                        <h2 className="text-6xl  text-gray-800 dark:text-gray-100 w-100">
+                        <h2 className="text-5xl  text-gray-800 dark:text-gray-100 w-100">
                             100% Online AI - Powered <span className="text-blue-500">EduPRISM</span> Learning
                         </h2>
-                        <p className="text-gray-600 dark:text-gray-300 text-2xl leading-relaxed">
+                        <p className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed">
                             Experience state-of-the-art AI-powered tools that create personalized
                             learning pathways tailored to your unique needs with guaranteed results.
                         </p>
@@ -67,20 +67,20 @@ export default function About() {
                             />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-                            <div className="dark:bg-blue-100 bg-blue-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
-                                <h3 className="text-3xl font-bold text-blue-500">
+                            <div className="dark:bg-blue-100 bg-blue-100 rounded-xl py-6 text-center shadow hover:scale-105 transition">
+                                <h3 className="text-2xl font-bold text-blue-500">
                                     <CountUp end={95} duration={2} suffix="%" enableScrollSpy />
                                 </h3>
                                 <p className="mt-2 text-gray-700">Grade Improvement</p>
                             </div>
                             <div className="bg-green-100 dark:bg-green-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
-                                <h3 className="text-3xl font-bold text-green-500">
+                                <h3 className="text-2xl font-bold text-green-500">
                                     <CountUp end={99} duration={2} suffix="%" enableScrollSpy />
                                 </h3>
                                 <p className="mt-2 text-gray-700">Satisfaction Rate</p>
                             </div>
-                            <div className="bg-yellow-100 dark:bg-yellow-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
-                                <h3 className="text-3xl font-bold text-yellow-700">
+                            <div className="bg-orange-100 dark:bg-yellow-100 rounded-xl p-6 text-center shadow hover:scale-105 transition">
+                                <h3 className="text-2xl font-bold text-orange-500">
                                     <CountUp end={1200} duration={2} suffix=" hrs" enableScrollSpy />
                                 </h3>
                                 <p className="mt-2 text-gray-700">Tutoring Hours</p>
@@ -95,7 +95,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 px-4"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 px-20"
             >
                 {/* Block 1 */}
                 <div className="flex items-center gap-3 bg-blue-100 p-7 rounded-xl shadow  hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer">
