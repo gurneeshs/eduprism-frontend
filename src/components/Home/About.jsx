@@ -48,7 +48,7 @@ export default function About() {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="col-span-2">
                                 <img
-                                    src="/about/img1.jpg"
+                                    src="/about/img1.avif"
                                     alt="Big"
                                     className="rounded-2xl shadow-lg w-full object-cover h-72"
                                 />
@@ -56,12 +56,12 @@ export default function About() {
 
                             {/* Small Images */}
                             <img
-                                src="/about/img2.jpg"
+                                src="/about/img2.avif"
                                 alt="Small 1"
                                 className="rounded-2xl shadow-md w-full object-cover h-40"
                             />
                             <img
-                                src="/about/img3.jpg"
+                                src="/about/img3.avif"
                                 alt="Small 2"
                                 className="rounded-2xl shadow-md w-full object-cover h-40"
                             />

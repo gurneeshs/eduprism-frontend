@@ -54,7 +54,7 @@ export default function Methodology() {
             {/* Single Image */}
             <div className="mt-12">
                 <img
-                    src="/methodology/learning.jpg"
+                    src="/methodology/learning.avif"
                     alt="Methodology Illustration"
                     className="mx-auto rounded-xl shadow-lg object-cover"
                 />

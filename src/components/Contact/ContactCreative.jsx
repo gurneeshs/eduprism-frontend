@@ -66,7 +66,7 @@ export default function ContactCreative() {
                         className="relative w-full h-full rounded-2xl overflow-hidden"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b9a5f1c29d8ecf03ce6f3b1a7c0e3d9"
+                            src="/contact/contact.avif"
                             alt="students"
                             className="w-full h-96 object-cover rounded-2xl shadow-lg"
                         />
