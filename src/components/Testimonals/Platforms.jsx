@@ -11,7 +11,7 @@ const firstRowCards = [
         tagColors: ["bg-blue-100 text-blue-700", "bg-green-100 text-green-700"],
     },
     {
-        color: "border-green-500",
+        color: "border-lightgreen-700",
         img: "/platforms/PencilSpaces.JPEG",
         title: "Pencil Spaces",
         desc: "Interactive digital workspace for collaborative learning, note-taking, and creative problem-solving in an engaging environment.",
@@ -19,7 +19,7 @@ const firstRowCards = [
         tagColors: ["bg-yellow-100 text-yellow-700", "bg-orange-100 text-orange-500"],
     },
     {
-        color: "border-purple-500",
+        color: "border-orange-500",
         img: "/platforms/pearassessment.PNG",
         title: "Pear Assessment",
         desc: "Comprehensive assessment tools that provide detailed insights into student performance and learning gaps with advanced analytics.",
@@ -75,7 +75,7 @@ export default function Platforms() {
                 {firstRowCards.map((card, i) => (
                     <motion.div
                         key={i}
-                        className={`group rounded-2xl border-t-8 ${card.color} bg-gray-100 dark:bg-gray-900 shadow-md p-6 flex flex-col items-center text-center 
+                        className={`group rounded-2xl border-t-8 ${card.color} bg-white dark:bg-gray-900 shadow-md p-6 flex flex-col items-center text-center 
                   transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:scale-105`}
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ export default function Platforms() {
                 {secondRowCards.map((card, i) => (
                     <motion.div
                         key={i}
-                        className={`group rounded-2xl border-t-8 ${card.color} bg-gray-100 dark:bg-gray-800 shadow-md p-6 text-center 
+                        className={`group rounded-2xl border-t-8 ${card.color} bg-white dark:bg-gray-800 shadow-md p-6 text-center 
                   transform transition-all duration-500 hover:rotate-1 hover:-translate-y-2 hover:shadow-xl hover:bg-gradient-to-br hover:from-white hover:to-gray-50 dark:hover:bg-gradient-to-br dark:hover:from-gray-800 dark:hover:to-gray-900`}
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}

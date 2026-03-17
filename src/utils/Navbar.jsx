@@ -36,7 +36,7 @@ export default function Navbar() {
     <>
       {/* Progress bar */}
       <motion.div
-        className="h-2 bg-blue-500 dark:bg-teal origin-left z-60 fixed top-0 left-0 right-0"
+        className="h-1 bg-blue-500 dark:bg-teal origin-left z-60 fixed top-0 left-0 right-0"
         style={{ scaleX }}
       />
 

@@ -5,32 +5,32 @@ const principles = [
     {
         title: "Precision",
         desc: "Every lesson is carefully designed to keep things simple and focused. By breaking down difficult tasks into smaller, manageable steps, we help students stay on track and understand what they've learned for longer.",
-        icon: <Lightbulb className="w-6 h-6 text-yellow-700" />,
-        color: "from-yellow-100 to-yellow-300",
+        icon: <Lightbulb className="w-6 h-6 text-white" />,
+        color: "from-blue-700 to-blue-500",
     },
     {
         title: "Rigour",
         desc: "Every lesson prepares students thoughtfully with constructed challenges and tasks that require deeper thinking and application of what they've learned, building resilience and confidence.",
-        icon: <Users className="w-6 h-6 text-blue-700" />,
-        color: "from-blue-100 to-blue-300",
+        icon: <Users className="w-6 h-6 text-white" />,
+        color: "from-green-500 to-green-300",
     },
     {
         title: "Insight",
         desc: "We look for why a student makes an error, and how to fix this. This diagnostic approach allows us to pinpoint the underlying misconceptions and guide students toward true understanding.",
-        icon: <Rocket className="w-6 h-6 text-green-700" />,
-        color: "from-green-100 to-green-300",
+        icon: <Rocket className="w-6 h-6 text-white" />,
+        color: "from-teal-700 to-teal-500",
     },
     {
         title: "Strategy",
         desc: "Students are guided to become active strategic thinkers. Students are encouraged to think about their own learning through clear strategies and goal-setting practices.",
-        icon: <Target className="w-6 h-6 text-orange-700" />,
-        color: "from-orange-100 to-orange-300",
+        icon: <Target className="w-6 h-6 text-white" />,
+        color: "from-orange-700 to-orange-500",
     },
     {
         title: "Mastery",
         desc: "Every student can succeed with a structured learning approach, expert designed feedback, and the right support. This unique approach helps students apply what they've learned to unfamiliar problems.",
-        icon: <Shield className="w-6 h-6 text-teal-700" />,
-        color: "from-teal-100 to-teal-300",
+        icon: <Shield className="w-6 h-6 text-white" />,
+        color: "from-lightgreen-700 to-lightgreen-500",
 
     },
 ];
@@ -61,7 +61,7 @@ export default function Methodology() {
             </div>
 
             {/* Principles */}
-            <div className="mt-20 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="mt-20 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 {principles.map((p, index) => (
                     <motion.div
                         key={index}
@@ -69,23 +69,32 @@ export default function Methodology() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.2 }}
-                        // whileHover={{ scale: 1.05, y: -8 }}
-                        className={`bg-gradient-to-br ${p.color} rounded-2xl shadow-lg p-6 flex flex-col hover:-translate-y-2 transition transform duration-300 items-center text-center`}
+                        className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-9 hover:-translate-y-2 transition transform duration-300"
                     >
-                        <div className="w-full sm:flex sm:items-center sm:justify-center sm:space-x-4 mb-4">                       
-                         <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-md mb-4">
-                            {p.icon}
-                        </div>
+                        {/* Header */}
+                        <div className="flex items-start gap-4">
+                            <div className={`bg-gradient-to-br ${p.color} p-5 rounded-xl flex items-center justify-center shadow-md`}>
+                                {p.icon}
+                            </div>
+
+                            <div className="text-left">
+                                <h3 className="text-2xl mb-2 font-semibold text-gray-800 dark:text-gray-200">
+                                    {p.title}
+                                </h3>
+                                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                    {p.desc}
+                                </p>
+                            </div>
                         </div>
 
-                        <h3 className="text-xl font-bold text-gray-800 text-left sm:text-center w-full">{p.title}</h3>
-                        <p className="text-gray-600 text-md text-left sm:text-center mt-2">{p.desc}</p>
+                        {/* Description */}
+
                     </motion.div>
                 ))}
             </div>
 
             {/* Final Call-to-Action */}
-            <div className="mt-28 bg-gradient-to-r bg-blue-100  rounded-2xl p-10 max-w-3xl mx-auto shadow-md">
+            <div className="mt-28 bg-gradient-to-r bg-blue-50   rounded-2xl p-10 max-w-3xl mx-auto shadow-md">
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-800">
                     Ready to Experience the PRISM Difference?
                 </h3>

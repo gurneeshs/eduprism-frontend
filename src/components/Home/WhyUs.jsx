@@ -51,7 +51,7 @@ const WhyUs = () => {
         viewport={{ once: true }}
         className="text-sm md:text-lg text-blue-700 font-semibold text-center"
       >
-        WHY CHOOSE EDUPRISM?
+        Our Unique Approach
       </motion.p>
 
       {/* Large Heading */}
