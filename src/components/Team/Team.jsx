@@ -45,7 +45,7 @@ export default function Team() {
     }
 
     return (
-        <section className="py-16 px-20 relative bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat">
+        <section className="py-16 px-20 relative ">
             <div className="text-center max-w-3xl mx-auto mb-12">
                 <p className="text-sm md:text-lg text-blue-700 font-semibold uppercase">Meet our team</p>
                 <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2">

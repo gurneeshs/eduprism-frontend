@@ -43,7 +43,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat">
+    <section className="py-4 md:py-8 lg:py-16 px-6 md:px-12 lg:px-20">
       <div className="text-center max-w-3xl mx-auto mb-12">
         <p className="text-lg md:text-2xl text-blue-700 font-semibold uppercase">FAQ</p>
         <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mt-2">

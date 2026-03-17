@@ -149,16 +149,17 @@ body {
 
 /* background image on pseudo-element so we can control its opacity */
 body::before {
-  /* content: ""; */
+  content: "";
   position: fixed;
   /* fi
-  inset: 0;             /* top:0; right:0; bottom:0; left:0 */
-  /* background-image: url('/background/lightBackground2.jpg'); */
-  /* background-repeat: no-repeat; */
-  /* background-position: center; */
+  /* inset: 0;             top:0; right:0; bottom:0; left:0 */
+  inset: 0;
+  background-image: url('/public/background/background.png');
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   /* or cover if you want full-cover */
-  opacity: 0.45;
+  opacity: 0.9;
   /* <-- control transparency here */
   pointer-events: none;
   /* allow clicks through the image */
@@ -185,9 +186,8 @@ body::before {
   z-index: -1; /* behind content */
 }
 
-/* .dark body::before {
-  background-image: url('/background/darkBackground2.jpg');
+.dark body::before {
+  background-image: url('/public/background/darkbackground1.png');
   opacity: 0.95
   ;
 }
- */

@@ -31,7 +31,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonial" className="py-20 px-4 md:px-10 lg:px-20 bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat">
+    <section id="testimonial" className="py-20 px-4 md:px-10 lg:px-20 ">
       {/* Headings */}
       <p className="text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold text-center">
         STUDENT ACHIEVEMENTS

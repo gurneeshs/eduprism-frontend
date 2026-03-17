@@ -19,41 +19,42 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-        <section id="home">
-          <About />
-          <WhyUs />
-        </section>
+      <section id="home">
+        <About />
+        <Objection />
+        <WhyUs />
+      </section>
 
-        <section id="programs">
-          <Programs />
-          <Impact />
-        </section>
+      <section id="objection">
+      </section>
 
-
-        <section id="process">
-          <Process />
-          <Methodology />
-        </section>
-
-        <section id="testimonial">
-          <Testimonials />
-          <Platforms />
-        </section>
+      <section id="programs">
+        <Programs />
+        <Impact />
+      </section>
 
 
-        <section id="team">
-          {/* <Team /> */}
-          <Team />
-        </section>
+      <section id="process">
+        <Process />
+        <Methodology />
+      </section>
 
-        <section id="objection">
-          <Objection />
-        </section>
+      <section id="testimonial">
+        <Testimonials />
+        <Platforms />
+      </section>
 
-        <section id="contact">
-          <ContactCreative />
-          <FAQ/>
-        </section>
+
+      <section id="team">
+        {/* <Team /> */}
+        <Team />
+      </section>
+
+
+      <section id="contact">
+        <ContactCreative />
+        <FAQ />
+      </section>
 
     </div>
   )

@@ -32,7 +32,7 @@ export default function Process() {
     });
 
     return (
-        <section ref={ref} id="process" className="py-16 relative bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat">
+        <section ref={ref} id="process" className="py-16 relative ">
             {/* Main Heading */}
             <h2 className="text-center text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-16">
                 Your 5-Steps Pathway to Success
@@ -40,12 +40,12 @@ export default function Process() {
 
             <div className="relative mx-auto max-w-4xl">
                 {/* Vertical base line */}
-                <div className="absolute left-1/2 top-0 h-full w-3 bg-gray-300 -translate-x-1/2 rounded-full" />
+                <div className="absolute left-1/2 top-0 h-full w-1.5 bg-gray-300 -translate-x-1/2 rounded-full" />
 
                 {/* Scroll progress line */}
                 <motion.div
                     style={{ scaleY: scrollYProgress }}
-                    className="absolute left-1/2 top-0 h-full w-3 bg-blue-500 -translate-x-1/2 origin-top rounded-full"
+                    className="absolute left-1/2 top-0 h-full w-1.5 bg-blue-500 -translate-x-1/2 origin-top rounded-full"
                 />
 
                 {/* Steps */}

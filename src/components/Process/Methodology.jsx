@@ -37,7 +37,7 @@ const principles = [
 
 export default function Methodology() {
     return (
-        <section className="py-20 px-4 md:px-10 lg:px-20 text-center bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat">
+        <section className="py-20 px-4 md:px-10 lg:px-20 text-center ">
             {/* Headings */}
             <p className="text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold">
                 THE PRISM METHODOLOGY

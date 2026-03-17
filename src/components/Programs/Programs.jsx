@@ -117,7 +117,7 @@ const Dropdown = ({ title, content, color }) => {
 };
 export default function Programs() {
     return (
-        <section className="py-16 px-20  mx-auto bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat ">
+        <section className="py-16 px-20  mx-auto ">
             {/* Small Heading */}
             <p className="text-sm md:text-lg text-blue-700 font-semibold  uppercase tracking-wide text-center">
                 Our Programs
@@ -144,7 +144,7 @@ export default function Programs() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
                         // whileHover={{ y: -8, scale: 1.02 }}
-                        className={`bg-gray-50 dark:bg-gray-900 shadow-md rounded-xl p-6 hover:shadow-lg hover:-translate-y-2 transition transform duration-300 cursor-pointer ${cardColors[index]}`}
+                        className={`bg-white dark:bg-gray-900 shadow-md rounded-xl p-6 hover:shadow-lg hover:-translate-y-2 transition transform duration-300 cursor-pointer ${cardColors[index]}`}
                     >
                         {/* Header with Icon */}
                         <div className="flex items-center gap-3 mb-4">

@@ -5,23 +5,23 @@ const stats = [
   {
     label: "Years",
     value: 15,
-    color: "bg-blue-100 text-blue-700 border-blue-500",
+    color: "text-blue-700 dark:text-blue-500",
   },
   {
     label: "Students",
     value: 500,
-    color: "bg-lightgreen-100 text-lightgreen-700 border-lightgreen-700",
+    color: "text-lightgreen-700 dark:text-lightgreen-500",
   },
   {
     label: "Teaching Hours",
     value: 10000,
-    color: "bg-orange-50 text-orange-500 border-orange-500",
+    color: " text-teal-500 dark:text-teal-300",
   },
 ];
 
 export default function Impact() {
   return (
-    <section className="py-16 px-20 text-center bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat ">
+    <section className="py-16 px-20 text-center  ">
       {/* Small Heading */}
       <motion.h4
         initial={{ opacity: 0, y: 20 }}
@@ -50,11 +50,11 @@ export default function Impact() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className={`rounded-xl border-2 p-6 shadow-md ${stat.color}`}
+            className={`rounded-xl bg-white dark:bg-gray-900 p-6 shadow-md ${stat.color} hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer`}
           >
             <h3 className="text-3xl md:text-4xl font-extrabold">
               <CountUp end={stat.value} duration={2} separator="," enableScrollSpy />
-              {(stat.label === "Years" || stat.label === "Teaching Hours") && "+"}
+              {"+"}
             </h3>
             <p className="mt-2 text-lg font-medium">{stat.label}</p>
           </motion.div>

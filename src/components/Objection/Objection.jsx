@@ -108,7 +108,7 @@ const Objection = () => {
         }
     ];
     return (
-        <section className="py-16 px-20 bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat">
+        <section className="py-16 px-20 ">
             {/* Small Heading */}
             <motion.p
                 initial={{ opacity: 0, y: 20 }}

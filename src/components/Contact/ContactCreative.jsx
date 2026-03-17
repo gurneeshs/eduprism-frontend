@@ -45,7 +45,7 @@ export default function ContactCreative() {
     }
 
     return (
-        <section id="contact" className="py-20 px-6 md:px-12 lg:px-20 bg-[url('/background/background.png')] dark:bg-[url('/background/darkbackground1.png')] bg-cover bg-center bg-no-repeat ">
+        <section id="contact" className="py-4 md:py-8 lg:py-16 px-6 md:px-12 lg:px-20  ">
             <div className="max-w-7xl mx-auto">
                 <p className=" text-sm md:text-lg uppercase tracking-wider text-blue-700 font-semibold text-center">
                     Get in Touch
@@ -63,7 +63,7 @@ export default function ContactCreative() {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="relative w-full h-full rounded-2xl overflow-hidden"
+                        className="hidden relative lg:flex w-full h-full rounded-2xl overflow-hidden"
                     >
                         <img
                             src="/contact/contact.avif"
@@ -71,7 +71,7 @@ export default function ContactCreative() {
                             className="w-full h-96 object-cover rounded-2xl shadow-lg"
                         />
                         {/* Decorative floating badges */}
-                        <div className="absolute -top-4 -right-4 bg-gradient-to-br from-blue-400 to-indigo-500 text-white px-3 py-2 rounded-xl shadow-lg transform rotate-6">
+                        {/* <div className="absolute -top-4 -right-4 bg-gradient-to-br from-blue-400 to-indigo-500 text-white px-3 py-2 rounded-xl shadow-lg transform rotate-6">
                             <div className="flex items-center gap-2 text-sm font-semibold">
                                 <BookOpen className="w-4 h-4" /> Live Classes
                             </div>
@@ -80,7 +80,7 @@ export default function ContactCreative() {
                             <div className="flex items-center gap-2 text-sm text-gray-800">
                                 <Users className="w-4 h-4" /> Community
                             </div>
-                        </div>
+                        </div> */}
                     </motion.div>
 
                     {/* Right - Creative Form */}

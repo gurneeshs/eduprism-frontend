@@ -39,10 +39,10 @@ const cards = [
     description: "Our students consistently achieve high scores and gain admission to top universities, reflecting the effectiveness of our tutoring approach.",
   },
 ];
-
+// bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat 
 const WhyUs = () => {
   return (
-    <section className="py-16 px-20 bg-[url('/background/background1.png')] dark:bg-[url('/background/darkbackground2.png')] bg-cover bg-center bg-no-repeat ">
+    <section className="py-16 px-20 ">
       {/* Small Heading */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ const WhyUs = () => {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
             // whileHover={{ y: -8, scale: 1.00, duration: 0.1 }}
-            className="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow-md hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer text-left"
+            className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:-translate-y-2 hover:shadow-lg transition transform duration-300 cursor-pointer text-left"
           >
             <div className="mb-4">{card.icon}</div>
             <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{card.title}</h3>

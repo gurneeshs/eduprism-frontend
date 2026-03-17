@@ -21,12 +21,12 @@ export default function Navbar() {
   });
 
   const navItems = [
-    { name: "Home", link: "/", type: "route" },
+    { name: "Home", link: "home", type: "scroll" },
     { name: "Programs", link: "programs", type: "scroll" },
     { name: "Process", link: "process", type: "scroll" },
     { name: "Testimonial", link: "testimonial", type: "scroll" },
     { name: "Meet our Team", link: "team", type: "scroll" },
-    { name: "Parent's Concern", link: "objection", type: "scroll" },
+    // { name: "Parent's Concern", link: "objection", type: "scroll" },
     { name: "Contact", link: "contact", type: "scroll" },
     { name: "Login", link: "/login", type: "route" }, // 👈 Route link with DomLink
     { name:"Signup", link:"/signup", type:"route"}
@@ -62,7 +62,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden lg:flex space-x-8">
               {navItems.map((item) =>
                 item.type === "scroll" ? (
                   <Link
@@ -72,18 +72,20 @@ export default function Navbar() {
                     smooth={true}
                     offset={-80}
                     duration={400}
-                    className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group"
+                    className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-300 font-medium group"
                   >
                     {item.name}
-                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-400 bg-teal-500 transition-all group-hover:w-full"></span>
+                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-500 bg-teal-500 transition-all group-hover:w-full"></span>
                   </Link>
                 ) : (
                   <DomLink
                     key={item.name}
                     to={item.link}
-                    className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-400 font-medium group"
+                    className="cursor-pointer relative text-darker dark:text-gray-50 hover:text-teal-500 dark:hover:text-blue-300 font-medium group"
                   >
                     {item.name}
+                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 dark:bg-blue-500 bg-teal-500 transition-all group-hover:w-full"></span>
+
                   </DomLink>
                 )
               )}
@@ -104,10 +106,10 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-700 hover:text-blue-600 focus:outline-none"
+                className="text-gray-700 dark:text-gray-200 hover:text-blue-500 focus:outline-none"
               >
                 {isOpen ? (
                   <svg
@@ -153,7 +155,7 @@ export default function Navbar() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden bg-white shadow-md"
+              className="lg:hidden shadow-md"
             >
               {navItems.map((item) =>
                 item.type === "scroll" ? (
@@ -164,7 +166,7 @@ export default function Navbar() {
                     smooth={true}
                     offset={-80}
                     duration={400}
-                    className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    className="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 hover:text-blue-700 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
@@ -173,7 +175,7 @@ export default function Navbar() {
                   <DomLink
                     key={item.name}
                     to={item.link}
-                    className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    className="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 hover:text-blue-700 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
